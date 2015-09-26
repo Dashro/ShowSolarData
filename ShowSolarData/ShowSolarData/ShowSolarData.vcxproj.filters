@@ -24,14 +24,24 @@
     <Filter Include="Main">
       <UniqueIdentifier>{2448f36a-e705-4e9f-938d-f7f4d10ff24d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CustomPlot">
+      <UniqueIdentifier>{1c32c6fa-78e2-44cf-9acc-8b877b261c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SolarData">
+      <UniqueIdentifier>{3518a93d-5a21-47e2-a675-5d3163f5001a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Dateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Header Dateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_Mainwindow.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_Mainwindow.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_main.cpp">
       <Filter>Generierte Dateien</Filter>
     </ClCompile>
@@ -40,6 +50,30 @@
     </ClCompile>
     <ClCompile Include="Mainwindow.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Customplot\qcustomplot.cpp">
+      <Filter>CustomPlot</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qcustomplot.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qcustomplot.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="SolarData\SolarData.cpp">
+      <Filter>SolarData</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SolarData.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SolarData.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Mainwindow.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Mainwindow.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +85,12 @@
     </CustomBuild>
     <CustomBuild Include="Mainwindow.h">
       <Filter>Main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Customplot\qcustomplot.h">
+      <Filter>CustomPlot</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SolarData\SolarData.h">
+      <Filter>SolarData</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
