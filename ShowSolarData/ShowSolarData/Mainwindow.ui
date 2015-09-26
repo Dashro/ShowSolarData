@@ -6,17 +6,185 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>391</height>
+    <width>462</width>
+    <height>327</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>CMainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QCustomPlot" name="widget" native="true"/>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_Start">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="8" column="4">
+         <widget class="QLabel" name="label_Verbrauch_2">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Verbrauch:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="5">
+         <widget class="QLabel" name="label_showUsedLast">
+          <property name="text">
+           <string>show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QLabel" name="label_Produziert_2">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Produziert:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2">
+         <widget class="QLabel" name="label_showProducedLast">
+          <property name="text">
+           <string>show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="8">
+         <widget class="QLabel" name="label_showavAilableNow">
+          <property name="text">
+           <string>show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QLabel" name="label_showProducedNow">
+          <property name="text">
+           <string>show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="5">
+         <widget class="QLabel" name="label_showUsedNow">
+          <property name="text">
+           <string>show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QLabel" name="label_Verbrauch">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Verbrauch:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="7">
+         <widget class="QLabel" name="label_Verfgbar">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Verfügbar:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="7">
+         <widget class="QLabel" name="label_Verfgbar_2">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Verfügbar:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" colspan="8">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Aktuell&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" colspan="8">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Durchschnitt letzte 15min&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="6">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="3" column="3">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="label_Produziert">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Produziert:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="8">
+         <widget class="QLabel" name="label_showavAilableLast">
+          <property name="text">
+           <string>show</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="9" column="1">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Plot">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QCustomPlot" name="widget" native="true"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -25,21 +193,33 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>600</width>
+     <width>462</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>Datei</string>
     </property>
     <addaction name="actionSchlie_en"/>
    </widget>
    <widget class="QMenu" name="menuAnsicht">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>Ansicht</string>
     </property>
-    <addaction name="action_PacTot"/>
+    <property name="separatorsCollapsible">
+     <bool>false</bool>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>false</bool>
+    </property>
+    <addaction name="action_nextPage"/>
    </widget>
    <widget class="QMenu" name="menuAnsicht_Alle">
     <property name="title">
@@ -51,75 +231,24 @@
    <addaction name="menuAnsicht"/>
    <addaction name="menuAnsicht_Alle"/>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
   <action name="actionSchlie_en">
    <property name="text">
     <string>Schließen</string>
    </property>
   </action>
-  <action name="action_PacTot">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>PacTot</string>
-   </property>
-  </action>
-  <action name="actionJgh">
-   <property name="text">
-    <string>jgh</string>
-   </property>
-  </action>
-  <action name="actionJkljkl">
-   <property name="text">
-    <string>jkljkl</string>
-   </property>
-  </action>
-  <action name="actionJkljk">
-   <property name="text">
-    <string>jkljk</string>
-   </property>
-  </action>
-  <action name="actionKjlkl">
-   <property name="text">
-    <string>kjlkl</string>
-   </property>
-  </action>
-  <action name="actionKljk">
-   <property name="text">
-    <string>kljk</string>
-   </property>
-  </action>
-  <action name="actionKl">
-   <property name="text">
-    <string>kl</string>
-   </property>
-  </action>
-  <action name="actionKjl">
-   <property name="text">
-    <string>kjl</string>
-   </property>
-  </action>
-  <action name="actionJkljk_2">
-   <property name="text">
-    <string>jkljk</string>
-   </property>
-  </action>
-  <action name="actionJkljkl_2">
-   <property name="text">
-    <string>jkljkl</string>
-   </property>
-  </action>
   <action name="actionTest">
    <property name="text">
     <string>test</string>
+   </property>
+  </action>
+  <action name="action_nextPage">
+   <property name="text">
+    <string>Nächste Seite</string>
+   </property>
+  </action>
+  <action name="action_showPlot">
+   <property name="text">
+    <string>Diagram</string>
    </property>
   </action>
  </widget>

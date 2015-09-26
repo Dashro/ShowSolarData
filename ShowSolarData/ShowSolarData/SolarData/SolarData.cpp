@@ -56,3 +56,13 @@ void CSolarData::reloadDataFile()
 {
 
 }
+
+QStringList CSolarData::getCollum(int index)
+{
+	QStringList buffer;
+	for (int i = 0; i < dataList.size(); i++)
+	{
+		buffer.append(dataList.at(i).at(index));
+	}
+	return buffer;
+}

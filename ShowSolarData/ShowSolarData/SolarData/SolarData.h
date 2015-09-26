@@ -21,6 +21,8 @@ public:
 	QList<QStringList> getDataList() { return dataList; }
 	QStringList getTimeStamps() { return timeStamps; }
 
+	QStringList getCollum(int index);
+
 private:
 	void reloadDataFile();
 	void prozessLine(QString line);

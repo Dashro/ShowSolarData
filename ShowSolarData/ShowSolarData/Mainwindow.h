@@ -15,8 +15,11 @@ public:
 	CMainWindow(QWidget *parent = 0);
 	~CMainWindow();
 
+	void showDataStartPage(QString produced_now, QString need_now = "0", QString available_now = "0", QString produced_last = "0", QString need_last = "0", QString available_last = "0");
+
 public slots:
 	void ansichtActionTriggered(bool);
+	void nextPage();
 	
 
 private:
