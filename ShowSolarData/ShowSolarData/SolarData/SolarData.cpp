@@ -41,26 +41,22 @@ void CSolarData::prozessLine(QString line)
 
 	if (Row > 4)
 	{
-		timeStamps.append(buffer.first());
+		timeStamps.append(QString("%1").arg(toTime_t(buffer.first())));
 		dataMatrix.append(buffer);
 	}
 	else if (Row == 3)
 	{
-		unitList.operator=(buffer);
+		unitList = buffer;
 	}
 	else if (Row == 4)
 	{
-		headerList.operator=(buffer);
+		headerList = buffer;
 	}
 
 	Row++;
 
 }
 
-void CSolarData::reloadDataFile()
-{
-
-}
 
 QStringList CSolarData::getCollum(int index)
 {
@@ -70,4 +66,23 @@ QStringList CSolarData::getCollum(int index)
 		buffer.append(dataMatrix.at(i).at(index));
 	}
 	return buffer;
+}
+
+double CSolarData::toTime_t(QString TimeStamp)
+{
+	QStringList buffer = TimeStamp.split(' ');
+
+	QStringList buffer_Date = buffer.at(0).split('/');
+	QStringList buffer_Time = buffer.at(1).split(':');
+
+	QDateTime dateTime;
+
+	//dateTime.addYears(buffer_Date.at(2).toInt());
+	//dateTime.addMonths(buffer_Date.at(1).toInt());
+	//dateTime.addDays(buffer_Date.at(0).toInt());
+
+	dateTime.setDate(QDate(buffer_Date.at(2).toInt(), buffer_Date.at(1).toInt(), buffer_Date.at(0).toInt()));
+	dateTime.setTime(QTime(buffer_Time.at(0).toInt(), buffer_Time.at(1).toInt(), buffer_Time.at(2).toInt()));
+
+	return dateTime.toTime_t();
 }

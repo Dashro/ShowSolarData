@@ -4,10 +4,9 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);	
-	CMainWindow w;
-	w.show();
 	QCoreApplication::setOrganizationName("Fabian Production");
 	QCoreApplication::setApplicationName("ShowSolarData");
-
+	CMainWindow w;
+	w.show();
 	return a.exec();
 }

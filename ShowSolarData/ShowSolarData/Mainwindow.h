@@ -21,7 +21,7 @@ public:
 	~CMainWindow();
 
 	int getRandomNo(int low, int high);
-	double toTime_t(QString TimeStamp);
+
 
 public slots:
 	void ansichtActionTriggered(bool);
@@ -38,13 +38,15 @@ private:
 	CStartPage				*m_StartPage;
 	CPlotter				*m_Plotter;
 
-	QString					solarDataFilePath;
-	QString					consumptionDataFilePath;
-
 	QStringList				SolarDataHeaderList;
 	QList<QStringList>		SolarDataMatrix;
 	QStringList				SolarDataUnitList;
 	QStringList				SolarDataTimeStamps;
+
+	QStringList				ConsumptionDataHeaderList;
+	QList<QStringList>		ConsumptionDataMatrix;
+	QStringList				ConsumptionDataUnitList;
+	QStringList				ConsumptionDataTimeStamps;
 
 
 

@@ -33,7 +33,7 @@ void CFolderChooseWindow::pushedOpen()
 
 		QString filePath = fModel->filePath(mIndex);
 		emit newSolarDataFolder(filePath);
-		setMode(ChooseMode::ChooseConsuptionData);
+		//setMode(ChooseMode::ChooseConsuptionData);
 	}
 	else if (mode == ChooseMode::ChooseConsuptionData)
 	{
@@ -41,7 +41,7 @@ void CFolderChooseWindow::pushedOpen()
 
 		QString filePath = fModel->filePath(mIndex);
 		emit newConsuptionDataFolder(filePath);
-		setMode(ChooseMode::ChooseSolarData);
+		//setMode(ChooseMode::ChooseSolarData);
 	}
 	else
 		qDebug() << "Ungültiger Mode";
