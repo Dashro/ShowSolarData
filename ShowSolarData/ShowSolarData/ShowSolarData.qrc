@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/">
+    <file>Resources/0006c9_a1b5dc3e5208946fc3a01d851f85d769.jpg</file>
+    <file>Resources/add.png</file>
+    <file>Resources/plus.png</file>
+    <file>Resources/remove_minus_sign.png</file>
+  </qresource>
+</RCC>

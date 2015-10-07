@@ -40,19 +40,39 @@
       <Extensions>h</Extensions>
       <ParseFiles>true</ParseFiles>
     </Filter>
+    <Filter Include="Form Dateien">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Plotter">
+      <UniqueIdentifier>{f9b02986-74e4-4169-9bdf-edb01eb305bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plotter\View">
+      <UniqueIdentifier>{bc94bc82-ae04-4c90-a3dc-5e7ec1e77491}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StartPage">
+      <UniqueIdentifier>{b1f61ada-f939-47ba-a788-b6ab8487eeda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StartPage\View">
+      <UniqueIdentifier>{70524096-d77f-494e-ba63-9e37459b2c9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FolderChoose">
+      <UniqueIdentifier>{d3209657-ab40-4060-a4d3-faa3825087c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FolderChoose\View">
+      <UniqueIdentifier>{5937f43a-3b2c-457a-b237-601fd0d4e3fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ConsuptionData">
+      <UniqueIdentifier>{b7a6f059-80a7-41fe-aef3-c0896d480f34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\qrc_main.cpp">
-      <Filter>Generierte Dateien</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Mainwindow.cpp">
       <Filter>Main</Filter>
-    </ClCompile>
-    <ClCompile Include="Customplot\qcustomplot.cpp">
-      <Filter>CustomPlot</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_qcustomplot.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
@@ -75,27 +95,140 @@
     <ClCompile Include="GeneratedFiles\Release\moc_Mainwindow.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ShowSolarData.cpp">
+      <Filter>Generierte Dateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Customplot\qcustomplot.cpp">
+      <Filter>CustomPlot</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Plotter.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Plotter.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_PlotterWindow.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_PlotterWindow.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Plotter\Plotter.cpp">
+      <Filter>Plotter</Filter>
+    </ClCompile>
+    <ClCompile Include="Plotter\PlotterWindow.cpp">
+      <Filter>Plotter\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_StartPage.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_StartPage.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="StartPage\StartPage.cpp">
+      <Filter>StartPage</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_StartPageWindow.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_StartPageWindow.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="StartPage\CStartPageWindow.cpp">
+      <Filter>StartPage\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FolderChoose.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FolderChoose.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_FolderChooseWindow.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_FolderChooseWindow.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="FolderChoose\FolderChoose.cpp">
+      <Filter>FolderChoose</Filter>
+    </ClCompile>
+    <ClCompile Include="FolderChoose\FolderChooseWindow.cpp">
+      <Filter>FolderChoose\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ConsumptionData.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ConsumptionData.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsumptionData\ConsumptionData.cpp">
+      <Filter>ConsuptionData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="main.qrc">
-      <Filter>Resource Dateien</Filter>
-    </CustomBuild>
     <CustomBuild Include="Mainwindow.ui">
       <Filter>Main</Filter>
     </CustomBuild>
     <CustomBuild Include="Mainwindow.h">
       <Filter>Main</Filter>
     </CustomBuild>
+    <CustomBuild Include="SolarData\SolarData.h">
+      <Filter>SolarData</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ShowSolarData.qrc">
+      <Filter>Resource Dateien</Filter>
+    </CustomBuild>
     <CustomBuild Include="Customplot\qcustomplot.h">
       <Filter>CustomPlot</Filter>
     </CustomBuild>
-    <CustomBuild Include="SolarData\SolarData.h">
-      <Filter>SolarData</Filter>
+    <CustomBuild Include="Plotter\PlotterWindow.h">
+      <Filter>Plotter\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Plotter\Plotter.h">
+      <Filter>Plotter</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Plotter\PlotterWindow.ui">
+      <Filter>Plotter\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="StartPage\StartPage.h">
+      <Filter>StartPage</Filter>
+    </CustomBuild>
+    <CustomBuild Include="StartPage\StartPageWindow.h">
+      <Filter>StartPage\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="StartPage\StartPageWindow.ui">
+      <Filter>StartPage\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FolderChoose\FolderChooseWindow.ui">
+      <Filter>FolderChoose\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FolderChoose\FolderChoose.h">
+      <Filter>FolderChoose</Filter>
+    </CustomBuild>
+    <CustomBuild Include="FolderChoose\FolderChooseWindow.h">
+      <Filter>FolderChoose\View</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ConsumptionData\ConsumptionData.h">
+      <Filter>ConsuptionData</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_Mainwindow.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_PlotterWindow.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_StartPageWindow.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_FolderChooseWindow.h">
+      <Filter>Generierte Dateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\0006c9_a1b5dc3e5208946fc3a01d851f85d769.jpg">
+      <Filter>Resource Dateien</Filter>
+    </Image>
   </ItemGroup>
 </Project>

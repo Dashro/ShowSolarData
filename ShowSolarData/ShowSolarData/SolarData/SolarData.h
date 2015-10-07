@@ -4,6 +4,7 @@
 
 #include <QObject>
 #include <QtCore>
+#include <qmessagebox.h>
 
 class CSolarData : public QObject
 {
@@ -13,12 +14,12 @@ public:
 	CSolarData(QObject *parent = 0);
 	~CSolarData();
 
-	void openDatafile(QString fileName_);
+	int openDatafile(QString fileName_);
 
 	QStringList	getunitList() { return unitList; }
 	QStringList getheaderList() { return headerList; }
 
-	QList<QStringList> getDataList() { return dataList; }
+	QList<QStringList> getdataMatrix() { return dataMatrix; }
 	QStringList getTimeStamps() { return timeStamps; }
 
 	QStringList getCollum(int index);
@@ -36,7 +37,7 @@ private:
 	QStringList headerList;
 
 	QStringList timeStamps;
-	QList<QStringList> dataList;
+	QList<QStringList> dataMatrix;
 };
 
 #endif // SOLARDATA_H
