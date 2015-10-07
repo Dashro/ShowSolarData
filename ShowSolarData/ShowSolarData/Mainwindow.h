@@ -20,9 +20,8 @@ public:
 	CMainWindow(QWidget *parent = 0);
 	~CMainWindow();
 
-	void plotDataList(QString data, int smoothingFactor = 1);
-	void showDataStartPage(QString data);
 	int getRandomNo(int low, int high);
+	double toTime_t(QString TimeStamp);
 
 public slots:
 	void ansichtActionTriggered(bool);
@@ -45,7 +44,7 @@ private:
 
 
 
-	double toTime_t(QString TimeStamp);
+
 
 
 };
