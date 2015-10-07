@@ -25,8 +25,9 @@ public:
 	QStringList getCollum(int index);
 
 private:
-	void reloadDataFile();
 	void prozessLine(QString line);
+
+	double toTime_t(QString TimeStamp);
 
 
 //Attributes

@@ -12,15 +12,24 @@ class CFolderChooseWindow : public QWidget
 {
 	Q_OBJECT
 
-	enum class ChooseMode { ChooseSolarData, ChooseConsuptionData };
+
 
 public:
+	enum class ChooseMode { ChooseSolarData, ChooseConsuptionData };
+
 	CFolderChooseWindow(CFolderChoose *m_FolderChoose_, QWidget *parent = 0);
 	~CFolderChooseWindow();
 
 	void setMode(ChooseMode mode_);
-	ChooseMode getMode();
+	ChooseMode getMode()	{ return mode; };
 
+private slots:
+	void pushedOpen();
+
+signals:
+	void newSolarDataFolder(QString solarDataFolder);
+	void newConsuptionDataFolder(QString consuptionDataFolder);
+	
 private:
 	Ui::CFolderChooseWindow ui;
 
