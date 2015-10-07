@@ -9,22 +9,6 @@ CMainWindow::CMainWindow(QWidget *parent)
 	//======================================================================================================================================
 	QLocale german(QLocale::German);
 	//======================================================================================================================================
-    if (!m_SolarData->openDatafile("C:/Users/Fabian/Documents/GitHub/ShowSolarData/ShowSolarData/ShowSolarData/MyPlant-Spot-20150829.csv"))
-	{
-		QMessageBox msgBox;
-		msgBox.setIcon(QMessageBox::Critical);
-        msgBox.setText("The Programm will exit now");
-		msgBox.exec();
-        exit(1);
-	}
-	//======================================================================================================================================
-	headerList = m_SolarData->getheaderList();
-	dataMatrix = m_SolarData->getdataMatrix();
-	unitList = m_SolarData->getunitList();
-	timeStamps = m_SolarData->getTimeStamps();
-	//======================================================================================================================================
-	connect(ui.action_nextPage, SIGNAL(triggered()), this, SLOT(nextPage()));
-	//======================================================================================================================================
 	//for (int i = 5; i < headerList.size(); i++)
 	//{
 	//	QAction *tempAction = new QAction(QString("%1").arg(headerList.at(i)), this);
@@ -45,7 +29,13 @@ CMainWindow::CMainWindow(QWidget *parent)
 	m_Plotter = new CPlotter(this);
 	ui.stackedWidget->addWidget(m_Plotter->getView());
 	//======================================================================================================================================
+	//======================================================================================================================================
+	connect(ui.action_nextPage, SIGNAL(triggered()), this, SLOT(nextPage()));
 
+	connect(m_FolderChoose, SIGNAL(NewSolarDataFile(QString)), this, SLOT(newSolarDataFile(QString)));
+	connect(m_FolderChoose, SIGNAL(NewConsumptionDataFile(QString)), this, SLOT(newConsumptionDataFile(QString)));
+	//======================================================================================================================================
+	//======================================================================================================================================
 	resize(480, 320);
 
 
@@ -77,6 +67,29 @@ void CMainWindow::nextPage()
 	}
 }
 
+void CMainWindow::newSolarDataFile(QString newFile)
+{
+	solarDataFilePath = newFile;
+
+
+	if (!m_SolarData->openDatafile(solarDataFilePath))
+	{
+		ui.stackedWidget->setCurrentIndex(ui.stackedWidget->indexOf(m_FolderChoose->getView()));
+	}
+	//======================================================================================================================================
+	SolarDataHeaderList = m_SolarData->getheaderList();
+	SolarDataMatrix = m_SolarData->getdataMatrix();
+	SolarDataUnitList = m_SolarData->getunitList();
+	SolarDataTimeStamps = m_SolarData->getTimeStamps();
+
+}
+
+
+void CMainWindow::newConsumptionDataFile(QString newFile)
+{
+	consumptionDataFilePath = newFile;
+}
+
 double CMainWindow::toTime_t(QString TimeStamp)
 {
 	QStringList buffer = TimeStamp.split(' ');
@@ -95,7 +108,6 @@ double CMainWindow::toTime_t(QString TimeStamp)
 
 	return dateTime.toTime_t();
 }
-
 int CMainWindow::getRandomNo(int low, int high)
 {
 	return qrand() % ((high + 1) - low) + low;

@@ -19,8 +19,15 @@ public:
 	~CFolderChooseWindow();
 
 	void setMode(ChooseMode mode_);
-	ChooseMode getMode();
+	ChooseMode getMode()	{ return mode; };
 
+private slots:
+	void pushedOpen();
+
+signals:
+	void newSolarDataFolder(QString solarDataFolder);
+	void newConsuptionDataFolder(QString consuptionDataFolder);
+	
 private:
 	Ui::CFolderChooseWindow ui;
 

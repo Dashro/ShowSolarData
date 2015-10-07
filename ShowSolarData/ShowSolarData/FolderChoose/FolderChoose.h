@@ -15,6 +15,17 @@ public:
 
 	QWidget* getView();
 
+	//QString getSolarDataFile();
+	//QString getConsumptionDataFile();
+
+private slots:
+	void reciveNewSolarDataFolder(QString newFolder);
+	void reciveNewConsumptionDataFolder(QString newFolder);
+
+signals:
+	void NewSolarDataFile(QString newFolder);
+	void NewConsumptionDataFile(QString newFolder);
+
 private:
 	CFolderChooseWindow		*m_FolderChooseWindow;
 	

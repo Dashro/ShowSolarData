@@ -26,6 +26,9 @@ public:
 public slots:
 	void ansichtActionTriggered(bool);
 	void nextPage();
+
+	void newSolarDataFile(QString);
+	void newConsumptionDataFile(QString);
 	
 
 private:
@@ -35,11 +38,13 @@ private:
 	CStartPage				*m_StartPage;
 	CPlotter				*m_Plotter;
 
-	QStringList	unitList;
-	QStringList headerList;
+	QString					solarDataFilePath;
+	QString					consumptionDataFilePath;
 
-	QStringList timeStamps;
-	QList<QStringList> dataMatrix;
+	QStringList				SolarDataHeaderList;
+	QList<QStringList>		SolarDataMatrix;
+	QStringList				SolarDataUnitList;
+	QStringList				SolarDataTimeStamps;
 
 
 
