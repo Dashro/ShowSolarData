@@ -3,9 +3,14 @@
 #define MAINWINDOW_H
 
 #include <QtWidgets/QMainWindow>
+
+
 #include "ui_Mainwindow.h"
 #include "Customplot/qcustomplot.h"
 #include "SolarData/SolarData.h"
+#include "FolderChoose\FolderChoose.h"
+#include "StartPage\StartPage.h"
+#include "Plotter\Plotter.h"
 
 class CMainWindow : public QMainWindow
 {
@@ -15,7 +20,9 @@ public:
 	CMainWindow(QWidget *parent = 0);
 	~CMainWindow();
 
-	void showDataStartPage(QString produced_now, QString need_now = "0", QString available_now = "0", QString produced_last = "0", QString need_last = "0", QString available_last = "0");
+	void plotDataList(QString data, int smoothingFactor = 1);
+	void showDataStartPage(QString data);
+	int getRandomNo(int low, int high);
 
 public slots:
 	void ansichtActionTriggered(bool);
@@ -25,12 +32,20 @@ public slots:
 private:
 	Ui::CMainWindowClass ui;
 	CSolarData				*m_SolarData;
+	CFolderChoose			*m_FolderChoose;
+	CStartPage				*m_StartPage;
+	CPlotter				*m_Plotter;
 
 	QStringList	unitList;
 	QStringList headerList;
 
 	QStringList timeStamps;
-	QList<QStringList> dataList;
+	QList<QStringList> dataMatrix;
+
+
+
+
+	double toTime_t(QString TimeStamp);
 
 
 };
