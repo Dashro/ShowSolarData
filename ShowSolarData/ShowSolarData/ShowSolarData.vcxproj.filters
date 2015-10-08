@@ -66,6 +66,9 @@
     <Filter Include="ConsuptionData">
       <UniqueIdentifier>{b7a6f059-80a7-41fe-aef3-c0896d480f34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{63b238db-0ad9-4c45-9cf3-b2ef5e45d920}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -164,6 +167,15 @@
     <ClCompile Include="ConsumptionData\ConsumptionData.cpp">
       <Filter>ConsuptionData</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Data.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Data.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Data.cpp">
+      <Filter>Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Mainwindow.ui">
@@ -210,6 +222,9 @@
     </CustomBuild>
     <CustomBuild Include="ConsumptionData\ConsumptionData.h">
       <Filter>ConsuptionData</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Data\Data.h">
+      <Filter>Data</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
