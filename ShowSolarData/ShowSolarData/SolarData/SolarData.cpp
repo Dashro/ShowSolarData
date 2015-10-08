@@ -47,7 +47,7 @@ void CSolarData::prozessLine(QString line)
 
 	if (Row > 4)
 	{
-		timeStamps.append(QString("%1").arg(toTime_t(buffer.first())));
+		timeStamps.append(toTime_t(buffer.first()));
 		dataMatrix.append(buffer);
 	}
 	else if (Row == 3)

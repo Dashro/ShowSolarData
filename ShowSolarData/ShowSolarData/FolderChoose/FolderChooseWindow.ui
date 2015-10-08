@@ -13,11 +13,15 @@
   <property name="windowTitle">
    <string>CFolderChooseWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
     <widget class="QTreeView" name="treeView_FolderChoose">
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(255, 255, 255, 0);</string>
      </property>
      <attribute name="headerVisible">
       <bool>false</bool>
@@ -27,13 +31,12 @@
    <item row="2" column="0">
     <widget class="QPushButton" name="pBtn_Open">
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgba(0, 0, 0, 100);
+</string>
      </property>
      <property name="text">
       <string>Open</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -41,7 +44,13 @@
     <widget class="QLabel" name="label_Description">
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
-</string>
+background-color: rgba(255, 255, 255, 0);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
      </property>
      <property name="text">
       <string>Choose SolarData Folder</string>

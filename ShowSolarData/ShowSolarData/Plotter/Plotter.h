@@ -16,6 +16,8 @@ public:
 
 	QWidget *getView();
 
+	void plottDataListGraph(QStringList dataList, QList<double> timeStamps);
+
 private:
 	CPlotterWindow	*m_PlotterWindow;
 };

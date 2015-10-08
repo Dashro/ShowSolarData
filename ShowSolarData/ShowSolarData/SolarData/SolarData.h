@@ -20,7 +20,7 @@ public:
 	QStringList getheaderList() { return headerList; }
 
 	QList<QStringList> getdataMatrix() { return dataMatrix; }
-	QStringList getTimeStamps() { return timeStamps; }
+	QList<double> getTimeStamps() { return timeStamps; }
 
 	QStringList getCollum(int index);
 
@@ -37,7 +37,7 @@ private:
 	QStringList	unitList;
 	QStringList headerList;
 
-	QStringList timeStamps;
+	QList<double> timeStamps;
 	QList<QStringList> dataMatrix;
 
 	int Row;

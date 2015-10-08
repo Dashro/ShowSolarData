@@ -6,8 +6,8 @@
 
 
 #include "ui_Mainwindow.h"
-#include "Customplot/qcustomplot.h"
 #include "SolarData/SolarData.h"
+#include "ConsumptionData\ConsumptionData.h"
 #include "FolderChoose\FolderChoose.h"
 #include "StartPage\StartPage.h"
 #include "Plotter\Plotter.h"
@@ -34,6 +34,7 @@ public slots:
 private:
 	Ui::CMainWindowClass ui;
 	CSolarData				*m_SolarData;
+	CConsumptionData		*m_ConsumptionData;
 	CFolderChoose			*m_FolderChoose;
 	CStartPage				*m_StartPage;
 	CPlotter				*m_Plotter;
@@ -41,12 +42,12 @@ private:
 	QStringList				SolarDataHeaderList;
 	QList<QStringList>		SolarDataMatrix;
 	QStringList				SolarDataUnitList;
-	QStringList				SolarDataTimeStamps;
-
+	QList<double>			SolarDataTimeStamps;
+	
 	QStringList				ConsumptionDataHeaderList;
 	QList<QStringList>		ConsumptionDataMatrix;
 	QStringList				ConsumptionDataUnitList;
-	QStringList				ConsumptionDataTimeStamps;
+	QList<double>			ConsumptionDataTimeStamps;
 
 
 
