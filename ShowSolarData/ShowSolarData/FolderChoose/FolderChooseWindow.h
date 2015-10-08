@@ -28,7 +28,7 @@ private slots:
 
 signals:
 	void newSolarDataFolder(QString solarDataFolder);
-	void newConsuptionDataFolder(QString consuptionDataFolder);
+	void newConsumptionDataFolder(QString consuptionDataFolder);
 	
 private:
 	Ui::CFolderChooseWindow ui;

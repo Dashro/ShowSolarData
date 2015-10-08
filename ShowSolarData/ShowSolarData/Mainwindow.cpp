@@ -6,6 +6,7 @@ CMainWindow::CMainWindow(QWidget *parent)
 	//======================================================================================================================================
 	ui.setupUi(this);
 	m_SolarData = new CSolarData;
+	m_ConsumptionData = new CConsumptionData;
 	//======================================================================================================================================
 	QLocale german(QLocale::German);
 	//======================================================================================================================================
@@ -35,12 +36,16 @@ CMainWindow::CMainWindow(QWidget *parent)
 	connect(m_FolderChoose, SIGNAL(NewSolarDataFile(QString)), this, SLOT(newSolarDataFile(QString)));
 	connect(m_FolderChoose, SIGNAL(NewConsumptionDataFile(QString)), this, SLOT(newConsumptionDataFile(QString)));
 	//======================================================================================================================================
+	m_SolarData->openDatafile(m_FolderChoose->getSolarDataFile());
 	newSolarDataFile(m_FolderChoose->getSolarDataFile());
+	m_ConsumptionData->openDatafile(m_FolderChoose->getConsumptionDataFile());
 	newConsumptionDataFile(m_FolderChoose->getConsumptionDataFile());
 	//======================================================================================================================================
 	resize(480, 320);
 
+	ui.stackedWidget->setCurrentIndex(2);
 
+	m_Plotter->plottDataListGraph(m_SolarData->getCollum(SolarDataHeaderList.indexOf("Pac1")), SolarDataTimeStamps);
 }
 
 CMainWindow::~CMainWindow()
@@ -91,7 +96,7 @@ void CMainWindow::newSolarDataFile(QString newFile)
 
 void CMainWindow::newConsumptionDataFile(QString newFile)
 {
-	if (!m_SolarData->openDatafile(newFile))
+	if (!m_ConsumptionData->openDatafile(newFile))
 	{
 		QMessageBox msgBox;
 		msgBox.setText("Please select the Consumption-Data-Folder");
@@ -100,10 +105,10 @@ void CMainWindow::newConsumptionDataFile(QString newFile)
 	}
 	else
 	{
-		ConsumptionDataHeaderList = m_SolarData->getheaderList();
-		ConsumptionDataMatrix = m_SolarData->getdataMatrix();
-		ConsumptionDataUnitList = m_SolarData->getunitList();
-		ConsumptionDataTimeStamps = m_SolarData->getTimeStamps();
+		ConsumptionDataHeaderList	= m_ConsumptionData->getheaderList();
+		ConsumptionDataMatrix		= m_ConsumptionData->getdataMatrix();
+		ConsumptionDataUnitList		= m_ConsumptionData->getunitList();
+		ConsumptionDataTimeStamps	= m_ConsumptionData->getTimeStamps();
 	}
 }
 

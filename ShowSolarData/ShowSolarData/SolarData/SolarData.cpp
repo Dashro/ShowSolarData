@@ -16,6 +16,13 @@ int CSolarData::openDatafile(QString fileName_)
 {
 	fileName = fileName_;
 
+	Row = 0;
+
+	unitList.clear();
+	headerList.clear();
+	dataMatrix.clear();
+	timeStamps.clear();
+
 	QFile dataFile(fileName);
 	if (!dataFile.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
@@ -35,13 +42,12 @@ int CSolarData::openDatafile(QString fileName_)
 
 void CSolarData::prozessLine(QString line)
 {
-	static int Row = 0;
 
 	QStringList buffer = line.split(";");
 
 	if (Row > 4)
 	{
-		timeStamps.append(QString("%1").arg(toTime_t(buffer.first())));
+		timeStamps.append(toTime_t(buffer.first()));
 		dataMatrix.append(buffer);
 	}
 	else if (Row == 3)
@@ -68,8 +74,9 @@ QStringList CSolarData::getCollum(int index)
 	return buffer;
 }
 
-double CSolarData::toTime_t(QString TimeStamp)
+double CSolarData::toTime_t(QString TimeStamp_)
 {
+	QString TimeStamp = TimeStamp_;
 	QStringList buffer = TimeStamp.split(' ');
 
 	QStringList buffer_Date = buffer.at(0).split('/');

@@ -19,6 +19,7 @@ public:
 private:
 	CPlotter		*m_Plotter;
 
+
 };
 
 #endif // PLOTTERWINDOW_H
