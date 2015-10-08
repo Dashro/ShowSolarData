@@ -39,6 +39,8 @@ private:
 
 	QStringList timeStamps;
 	QList<QStringList> dataMatrix;
+
+	int Row;
 };
 
 #endif // SOLARDATA_H

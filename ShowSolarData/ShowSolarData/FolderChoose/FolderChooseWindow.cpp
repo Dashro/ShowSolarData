@@ -40,7 +40,7 @@ void CFolderChooseWindow::pushedOpen()
 		QModelIndex mIndex = ui.treeView_FolderChoose->currentIndex();
 
 		QString filePath = fModel->filePath(mIndex);
-		emit newConsuptionDataFolder(filePath);
+		emit newConsumptionDataFolder(filePath);
 		//setMode(ChooseMode::ChooseSolarData);
 	}
 	else
