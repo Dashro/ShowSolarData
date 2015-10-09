@@ -10,17 +10,23 @@ CMainWindow::CMainWindow(QWidget *parent)
 	//======================================================================================================================================
 	QLocale german(QLocale::German);
 	//======================================================================================================================================
-	//for (int i = 5; i < headerList.size(); i++)
-	//{
-	//	QAction *tempAction = new QAction(QString("%1").arg(headerList.at(i)), this);
-	//	ui.menuAnsicht_Alle->addAction(tempAction);
-	//	tempAction->setData(i);
-	//	connect(tempAction, SIGNAL(triggered(bool)), this, SLOT(ansichtActionTriggered(bool)));
-	//}
+	//Actions
+	QAction *action_Close = new QAction(QIcon("Resources/cancel.png"), "Close", this);
+	QAction *action_FullScreen = new QAction(QIcon("Resources/slideshow_full_screen.png"), "Fullsreen", this);
+	QAction *action_HomePage = new QAction(QIcon("Resources/home_page.png"), "Home Page", this);
+	QAction *action_Plotter = new QAction(QIcon("Resources/chart_curve.png"), "Plotter", this);
+	QAction *action_FolderChoose = new QAction(QIcon("Resources/folder_explorer.png"), "Folder Choose", this);
+	//QAction *action_HomePage = new QAction(QIcon("Resources/home_page.png"), "Home Page", this);
 	//======================================================================================================================================
-	//FolderChoose
-	m_FolderChoose = new CFolderChoose(this);
-	ui.stackedWidget->addWidget(m_FolderChoose->getView());
+	//Toolbar
+	ui.toolBar->addAction(action_Close);
+	ui.toolBar->addAction(action_FullScreen);
+	ui.toolBar->addSeparator();
+	ui.toolBar->setIconSize(QSize(20, 20));
+	ui.toolBar->addAction(action_HomePage);
+	ui.toolBar->addAction(action_Plotter);
+	ui.toolBar->addAction(action_FolderChoose);
+	
 	//======================================================================================================================================
 	//StartPage
 	m_StartPage = new CStartPage(this);
@@ -30,11 +36,22 @@ CMainWindow::CMainWindow(QWidget *parent)
 	m_Plotter = new CPlotter(this);
 	ui.stackedWidget->addWidget(m_Plotter->getView());
 	//======================================================================================================================================
+	//FolderChoose
+	m_FolderChoose = new CFolderChoose(this);
+	ui.stackedWidget->addWidget(m_FolderChoose->getView());
 	//======================================================================================================================================
-	connect(ui.action_nextPage, SIGNAL(triggered()), this, SLOT(nextPage()));
+	//======================================================================================================================================
+	//connect(ui.action_nextPage, SIGNAL(triggered()), this, SLOT(nextPage()));
+	connect(action_Close,			SIGNAL(triggered()), this, SLOT(close()));
+	connect(action_FullScreen,		SIGNAL(triggered()), this, SLOT(showFullScreen()));
 
-	connect(m_FolderChoose, SIGNAL(NewSolarDataFile(QString)), this, SLOT(newSolarDataFile(QString)));
-	connect(m_FolderChoose, SIGNAL(NewConsumptionDataFile(QString)), this, SLOT(newConsumptionDataFile(QString)));
+	connect(action_HomePage,		SIGNAL(triggered()), this, SLOT(showStartpage()));
+	connect(action_Plotter,			SIGNAL(triggered()), this, SLOT(showPlotter()));
+	connect(action_FolderChoose,	SIGNAL(triggered()), this, SLOT(showFolderChoose()));
+
+
+	connect(m_FolderChoose,			SIGNAL(NewSolarDataFile(QString)), this, SLOT(newSolarDataFile(QString)));
+	connect(m_FolderChoose,			SIGNAL(NewConsumptionDataFile(QString)), this, SLOT(newConsumptionDataFile(QString)));
 	//======================================================================================================================================
 	m_SolarData->openDatafile(m_FolderChoose->getSolarDataFile());
 	newSolarDataFile(m_FolderChoose->getSolarDataFile());
@@ -43,7 +60,7 @@ CMainWindow::CMainWindow(QWidget *parent)
 	//======================================================================================================================================
 	resize(480, 320);
 
-	ui.stackedWidget->setCurrentIndex(2);
+	ui.stackedWidget->setCurrentIndex(0);
 
 	m_Plotter->plottDataListGraph(m_SolarData->getCollum(SolarDataHeaderList.indexOf("Pac1")), SolarDataTimeStamps);
 }
@@ -53,25 +70,6 @@ CMainWindow::~CMainWindow()
 
 }
 
-void CMainWindow::ansichtActionTriggered(bool)
-{
- //   QAction *emitter = static_cast<QAction*>(sender());
-	//QString test = emitter->text();
-
-	//plotDataList(test);
-}
-void CMainWindow::nextPage()
-{
-
-	if (ui.stackedWidget->currentIndex() < ui.stackedWidget->count() - 1)
-	{
-		ui.stackedWidget->setCurrentIndex(ui.stackedWidget->currentIndex() + 1);
-	}
-	else
-	{
-		ui.stackedWidget->setCurrentIndex(0);
-	}
-}
 
 void CMainWindow::newSolarDataFile(QString newFile)
 {
@@ -92,8 +90,6 @@ void CMainWindow::newSolarDataFile(QString newFile)
 		SolarDataTimeStamps = m_SolarData->getTimeStamps();
 	}
 }
-
-
 void CMainWindow::newConsumptionDataFile(QString newFile)
 {
 	if (!m_ConsumptionData->openDatafile(newFile))
@@ -110,6 +106,19 @@ void CMainWindow::newConsumptionDataFile(QString newFile)
 		ConsumptionDataUnitList		= m_ConsumptionData->getunitList();
 		ConsumptionDataTimeStamps	= m_ConsumptionData->getTimeStamps();
 	}
+}
+
+void CMainWindow::showStartpage()
+{
+	ui.stackedWidget->setCurrentIndex(0);
+}
+void CMainWindow::showPlotter()
+{
+	ui.stackedWidget->setCurrentIndex(1);
+}
+void CMainWindow::showFolderChoose()
+{
+	ui.stackedWidget->setCurrentIndex(2);
 }
 
 

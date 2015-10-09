@@ -24,11 +24,12 @@ public:
 
 
 public slots:
-	void ansichtActionTriggered(bool);
-	void nextPage();
-
 	void newSolarDataFile(QString);
 	void newConsumptionDataFile(QString);
+
+	void showStartpage();
+	void showPlotter();
+	void showFolderChoose();
 	
 
 private:
