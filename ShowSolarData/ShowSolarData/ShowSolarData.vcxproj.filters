@@ -69,6 +69,9 @@
     <Filter Include="Data">
       <UniqueIdentifier>{63b238db-0ad9-4c45-9cf3-b2ef5e45d920}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WebSocketClient">
+      <UniqueIdentifier>{0528be7a-dce0-4f2d-a762-0e4faa99a6b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -176,6 +179,15 @@
     <ClCompile Include="Data\Data.cpp">
       <Filter>Data</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_WebSocketClient.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_WebSocketClient.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="WebSocketClient\WebSocketClient.cpp">
+      <Filter>WebSocketClient</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Mainwindow.ui">
@@ -225,6 +237,9 @@
     </CustomBuild>
     <CustomBuild Include="Data\Data.h">
       <Filter>Data</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WebSocketClient\WebSocketClient.h">
+      <Filter>WebSocketClient</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

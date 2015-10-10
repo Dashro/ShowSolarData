@@ -32,6 +32,9 @@ CPlotterWindow::CPlotterWindow(CPlotter *m_Plotter_, QWidget *parent)
 	ui.m_Plotter->xAxis->grid()->setSubGridVisible(true);
 	ui.m_Plotter->yAxis->grid()->setSubGridVisible(true);
 	//======================================================================================================================================
+	//Legend 
+	ui.m_Plotter->legend->setVisible(true);
+	//======================================================================================================================================
 
 }
 

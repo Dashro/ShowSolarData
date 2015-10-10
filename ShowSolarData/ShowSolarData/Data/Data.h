@@ -22,10 +22,14 @@ public:
 	QList<QStringList> getdataMatrix() { return dataMatrix; }
 	QList<double> getTimeStamps() { return timeStamps; }
 
-	QStringList getCollum(int index);
+	QStringList getCollum(int index, QString asUnit = 0);
+	QStringList getCollumRelative(int index, QString asUnit = 0);
+
 
 private:
 	void prozessLine(QString line);
+	QStringList toUnit(QStringList dataList, QString unitFrom, QString unitTo, double multiplier = 1);
+
 
 	double toTime_t(QString TimeStamp);
 

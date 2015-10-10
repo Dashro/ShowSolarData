@@ -62,7 +62,10 @@ CMainWindow::CMainWindow(QWidget *parent)
 
 	ui.stackedWidget->setCurrentIndex(0);
 
-	m_Plotter->plottDataListGraph(m_SolarData->getCollum(SolarDataHeaderList.indexOf("Pac1")), SolarDataTimeStamps);
+	m_Plotter->plottDataListGraph(m_SolarData->getCollumRelative(SolarDataHeaderList.indexOf("ETotal"), "W"), SolarDataTimeStamps, "ERelative");
+
+
+
 }
 
 CMainWindow::~CMainWindow()
@@ -85,7 +88,6 @@ void CMainWindow::newSolarDataFile(QString newFile)
 	else
 	{
 		SolarDataHeaderList = m_SolarData->getheaderList();
-		SolarDataMatrix = m_SolarData->getdataMatrix();
 		SolarDataUnitList = m_SolarData->getunitList();
 		SolarDataTimeStamps = m_SolarData->getTimeStamps();
 	}
@@ -102,7 +104,6 @@ void CMainWindow::newConsumptionDataFile(QString newFile)
 	else
 	{
 		ConsumptionDataHeaderList	= m_ConsumptionData->getheaderList();
-		ConsumptionDataMatrix		= m_ConsumptionData->getdataMatrix();
 		ConsumptionDataUnitList		= m_ConsumptionData->getunitList();
 		ConsumptionDataTimeStamps	= m_ConsumptionData->getTimeStamps();
 	}

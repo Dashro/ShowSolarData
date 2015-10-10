@@ -64,12 +64,32 @@ void CData::prozessLine(QString line)
 }
 
 
-QStringList CData::getCollum(int index)
+QStringList CData::getCollum(int index, QString asUnit)
 {
 	QStringList buffer;
 	for (int i = 0; i < dataMatrix.size(); i++)
 	{
 		buffer.append(dataMatrix.at(i).at(index));
+	}
+
+	if (asUnit != 0)
+	{
+		return toUnit(buffer, headerList.at(index), asUnit);
+	}
+	return buffer;
+}
+
+QStringList CData::getCollumRelative(int index, QString asUnit)
+{
+	QLocale german(QLocale::German);
+	QStringList buffer;
+	for (int i = 1; i < dataMatrix.size(); i++)
+	{
+		buffer.append(QString("%1").arg(german.toDouble(dataMatrix.at(i).at(index)) - german.toDouble(dataMatrix.at(i - 1).at(index))));
+	}
+	if (asUnit != 0)
+	{
+		return toUnit(buffer, unitList.at(index), asUnit);
 	}
 	return buffer;
 }
@@ -89,7 +109,55 @@ double CData::toTime_t(QString TimeStamp_)
 	//dateTime.addDays(buffer_Date.at(0).toInt());
 
 	dateTime.setDate(QDate(buffer_Date.at(2).toInt(), buffer_Date.at(1).toInt(), buffer_Date.at(0).toInt()));
-	dateTime.setTime(QTime(buffer_Time.at(0).toInt(), buffer_Time.at(1).toInt(), buffer_Time.at(2).toInt()));
+	dateTime.setTime(QTime(buffer_Time.at(0).toInt(), buffer_Time.at(1).toInt()));
 
 	return dateTime.toTime_t();
+}
+
+QStringList CData::toUnit(QStringList dataList, QString unitFrom, QString unitTo, double multiplier)
+{
+	QLocale german(QLocale::German);
+
+
+	double multiplierFrom;
+	double multiplierTo;
+
+	if (unitFrom.startsWith("k"))
+		multiplierFrom = 1000;
+	else if (unitFrom.startsWith("M"))
+		multiplierFrom = 1000000;
+	else if (unitFrom.startsWith("m"))
+		multiplierFrom = 1 / 1000;
+	else if (unitFrom.startsWith("u"))
+		multiplierFrom = 1 / 1000000;
+	else
+		multiplierFrom = 1;
+
+	if (unitTo.startsWith("k"))
+		multiplierTo = 1000;
+	else if (unitTo.startsWith("M"))
+		multiplierTo = 1000000;
+	else if (unitTo.startsWith("m"))
+		multiplierTo = 1 / 1000;
+	else if (unitTo.startsWith("u"))
+		multiplierTo = 1 / 1000000;
+	else
+		multiplierTo = 1;
+
+	for (int i = 0; i < dataList.size(); i++)
+	{
+		dataList[i] = QString("%1").arg((dataList.at(i).toDouble() * multiplierFrom * multiplier) / multiplierTo);
+	}
+
+	if (unitFrom.contains("Wh") && unitTo.contains("W"))
+	{
+		
+
+		for (int i = 0; i < dataList.size(); i++)
+		{
+			double s = timeStamps.at(i + 1) - timeStamps.at(i);
+			dataList[i] = QString("%1").arg(dataList.at(i).toDouble() / (s / 3600));
+		}
+	}
+	return dataList;
 }

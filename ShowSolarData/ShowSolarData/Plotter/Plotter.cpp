@@ -19,7 +19,7 @@ QWidget* CPlotter::getView()
 	return m_PlotterWindow->window();
 }
 
-void CPlotter::plottDataListGraph(QStringList dataList, QList<double> timeStamps)
+void CPlotter::plottDataListGraph(QStringList dataList, QList<double> timeStamps, QString name)
 {
 	QLocale german(QLocale::German);
 	//======================================================================================================================================
@@ -37,8 +37,11 @@ void CPlotter::plottDataListGraph(QStringList dataList, QList<double> timeStamps
 	//setting up the Graph
 	QCPGraph *newGraph = m_PlotterWindow->ui.m_Plotter->addGraph();
 	newGraph->setData(xA, yA);
-	newGraph->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1), QBrush(Qt::white), 5));
+	newGraph->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 0.7), QBrush(Qt::white), 3));
 	newGraph->setPen(QPen(QColor(120, 120, 120), 2));
+	newGraph->setName(name);
+
+	graphList << QPair<QString, QCPGraph*>(name, newGraph);
 	//======================================================================================================================================
 	//Axis
 	m_PlotterWindow->ui.m_Plotter->xAxis->setRange(xA[0], xA[timeStamps.size() - 1]);
