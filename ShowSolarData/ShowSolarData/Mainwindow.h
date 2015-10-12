@@ -6,12 +6,11 @@
 
 
 #include "ui_Mainwindow.h"
-#include "SolarData/SolarData.h"
-#include "ConsumptionData\ConsumptionData.h"
-#include "FolderChoose\FolderChoose.h"
-#include "StartPage\StartPage.h"
-#include "Plotter\Plotter.h"
-#include "WebSocketClient\WebSocketClient.h"
+#include "Data/Data.h"
+#include "FolderChoose/FolderChoose.h"
+#include "StartPage/StartPage.h"
+#include "Plotter/Plotter.h"
+#include "WebSocketClient/WebSocketClient.h"
 
 class CMainWindow : public QMainWindow
 {
@@ -24,7 +23,7 @@ public:
 	//int getRandomNo(int low, int high);
 
 
-public slots:
+	public slots:
 	//void newSolarDataFile(QString);
 
 
@@ -34,7 +33,7 @@ public slots:
 
 	void newData();
 
-	
+
 
 private:
 	Ui::CMainWindowClass ui;
@@ -48,14 +47,6 @@ private:
 	QList< double >			DataHeaderList;
 	QList< double > 		DataUnitList;
 	QList< double >			DataTimeStamps;
-				  
-
-
-
-
-
-
-
 };
 
 #endif // MAINWINDOW_H

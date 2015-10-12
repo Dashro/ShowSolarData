@@ -712,10 +712,14 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
   </widget>
   <action name="actionSchlie_en">
+   <property name="icon">
+    <iconset resource="ShowSolarData.qrc">
+     <normaloff>:/Resources/008b00-plus-2-32.png</normaloff>:/Resources/008b00-plus-2-32.png</iconset>
+   </property>
    <property name="text">
     <string>Schließen</string>
    </property>

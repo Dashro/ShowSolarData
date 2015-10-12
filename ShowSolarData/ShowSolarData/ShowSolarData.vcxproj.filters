@@ -27,9 +27,6 @@
     <Filter Include="CustomPlot">
       <UniqueIdentifier>{1c32c6fa-78e2-44cf-9acc-8b877b261c7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SolarData">
-      <UniqueIdentifier>{3518a93d-5a21-47e2-a675-5d3163f5001a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Dateien">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;cxx;c;def</Extensions>
@@ -63,9 +60,6 @@
     <Filter Include="FolderChoose\View">
       <UniqueIdentifier>{5937f43a-3b2c-457a-b237-601fd0d4e3fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ConsuptionData">
-      <UniqueIdentifier>{b7a6f059-80a7-41fe-aef3-c0896d480f34}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Data">
       <UniqueIdentifier>{63b238db-0ad9-4c45-9cf3-b2ef5e45d920}</UniqueIdentifier>
     </Filter>
@@ -84,15 +78,6 @@
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_qcustomplot.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="SolarData\SolarData.cpp">
-      <Filter>SolarData</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SolarData.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SolarData.cpp">
       <Filter>Generierte Dateien\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Mainwindow.cpp">
@@ -161,15 +146,6 @@
     <ClCompile Include="FolderChoose\FolderChooseWindow.cpp">
       <Filter>FolderChoose\View</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ConsumptionData.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ConsumptionData.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="ConsumptionData\ConsumptionData.cpp">
-      <Filter>ConsuptionData</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Data.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -196,14 +172,8 @@
     <CustomBuild Include="Mainwindow.h">
       <Filter>Main</Filter>
     </CustomBuild>
-    <CustomBuild Include="SolarData\SolarData.h">
-      <Filter>SolarData</Filter>
-    </CustomBuild>
     <CustomBuild Include="ShowSolarData.qrc">
       <Filter>Resource Dateien</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Customplot\qcustomplot.h">
-      <Filter>CustomPlot</Filter>
     </CustomBuild>
     <CustomBuild Include="Plotter\PlotterWindow.h">
       <Filter>Plotter\View</Filter>
@@ -232,14 +202,14 @@
     <CustomBuild Include="FolderChoose\FolderChooseWindow.h">
       <Filter>FolderChoose\View</Filter>
     </CustomBuild>
-    <CustomBuild Include="ConsumptionData\ConsumptionData.h">
-      <Filter>ConsuptionData</Filter>
-    </CustomBuild>
     <CustomBuild Include="Data\Data.h">
       <Filter>Data</Filter>
     </CustomBuild>
     <CustomBuild Include="WebSocketClient\WebSocketClient.h">
       <Filter>WebSocketClient</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Customplot\qcustomplot.h">
+      <Filter>CustomPlot</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

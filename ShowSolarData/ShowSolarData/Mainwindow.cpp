@@ -11,11 +11,12 @@ CMainWindow::CMainWindow(QWidget *parent)
 	QLocale german(QLocale::German);
 	//======================================================================================================================================
 	//Actions
-	QAction *action_Close = new QAction(QIcon("Resources/cancel.png"), "Close", this);
-	QAction *action_FullScreen = new QAction(QIcon("Resources/slideshow_full_screen.png"), "Fullsreen", this);
-	QAction *action_HomePage = new QAction(QIcon("Resources/home_page.png"), "Home Page", this);
-	QAction *action_Plotter = new QAction(QIcon("Resources/chart_curve.png"), "Plotter", this);
-	QAction *action_FolderChoose = new QAction(QIcon("Resources/folder_explorer.png"), "Folder Choose", this);
+	
+    QAction *action_Close = new QAction(QIcon(QString::fromUtf8(":/Resources/cancel.png")), "Close", this);
+	QAction *action_FullScreen = new QAction(QIcon(QString::fromUtf8(":/Resources/slideshow_full_screen.png")), "Fullsreen", this);
+	QAction *action_HomePage = new QAction(QIcon(QString::fromUtf8(":/Resources/home_page.png")), "Home Page", this);
+	QAction *action_Plotter = new QAction(QIcon(QString::fromUtf8(":/Resources/chart_curve.png")), "Plotter", this);
+	QAction *action_FolderChoose = new QAction(QIcon(QString::fromUtf8(":/Resources/folder_explorer.png")), "Folder Choose", this);
 	//QAction *action_HomePage = new QAction(QIcon("Resources/home_page.png"), "Home Page", this);
 	//======================================================================================================================================
 	//Toolbar
@@ -47,10 +48,6 @@ CMainWindow::CMainWindow(QWidget *parent)
 	connect(action_HomePage,		SIGNAL(triggered()), this, SLOT(showStartpage()));
 	connect(action_Plotter,			SIGNAL(triggered()), this, SLOT(showPlotter()));
 	connect(action_FolderChoose,	SIGNAL(triggered()), this, SLOT(showFolderChoose()));
-
-
-	connect(m_FolderChoose,			SIGNAL(NewSolarDataFile(QString)), this, SLOT(newSolarDataFile(QString)));
-	connect(m_FolderChoose,			SIGNAL(NewConsumptionDataFile(QString)), this, SLOT(newConsumptionDataFile(QString)));
 
 	connect(m_Data,					SIGNAL(NewDataRecieved()), this, SLOT(newData()));
 

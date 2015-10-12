@@ -202,3 +202,4 @@ ShowSolarData/ShowSolarData/GeneratedFiles/ui_Mainwindow.h
 ShowSolarData/ShowSolarData/GeneratedFiles/ui_PlotterWindow.h
 ShowSolarData/ShowSolarData/GeneratedFiles/ui_StartPageWindow.h
 ShowSolarData/ShowSolarData/SolarData/hgfStartPage.cpp
+*.Debug
