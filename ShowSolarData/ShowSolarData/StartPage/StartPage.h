@@ -16,7 +16,7 @@ public:
 
 	QWidget* getView();
 
-	void showData(QStringList SolarData, QStringList ConsumptionData, QList<double> timeStamps, QTime minutes);
+	void showData(QList < double > production, QList < double > consumption, QList < double > surplus, QList<double> timeStamps);
 
 private:
 	CStartPageWindow	*m_StartPageWindow;
