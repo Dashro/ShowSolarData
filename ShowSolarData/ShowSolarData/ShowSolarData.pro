@@ -5,13 +5,20 @@
 TEMPLATE = app
 TARGET = ShowSolarData
 DESTDIR = ../Win32/Debug
-QT += core widgets gui printsupport
+QT += core network widgets gui printsupport websockets
 CONFIG += debug
-DEFINES += WIN64 QT_DLL QT_PRINTSUPPORT_LIB QT_WIDGETS_LIB
 INCLUDEPATH += ./GeneratedFiles \
     . \
     ./GeneratedFiles/Debug \
-    ./Neuer Ordner
+    ./Neuer Ordner \
+    ./Ploter \
+    ./Plotter \
+    ./SolarData \
+    ./StartPage \
+    ./FolderChoose \
+    ./ConsumptionData \
+    ./Data \
+    ./WebSocketClient
 DEPENDPATH += .
 MOC_DIR += ./GeneratedFiles/debug
 OBJECTS_DIR += debug

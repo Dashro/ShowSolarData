@@ -2,6 +2,7 @@
 #define STARTPAGE_H
 
 #include <QObject>
+#include <QTime>
 
 class CStartPageWindow;
 
@@ -15,6 +16,7 @@ public:
 
 	QWidget* getView();
 
+	void showData(QList < double > production, QList < double > consumption, QList < double > surplus, QList<double> timeStamps);
 
 private:
 	CStartPageWindow	*m_StartPageWindow;

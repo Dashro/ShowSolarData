@@ -1,8 +1,13 @@
 <RCC>
   <qresource prefix="/">
     <file>Resources/0006c9_a1b5dc3e5208946fc3a01d851f85d769.jpg</file>
-    <file>Resources/add.png</file>
-    <file>Resources/plus.png</file>
-    <file>Resources/remove_minus_sign.png</file>
+    <file>Resources/008b00-plus-2-32.png</file>
+    <file>Resources/cancel.png</file>
+    <file>Resources/chart_curve.png</file>
+    <file>Resources/folder_explorer.png</file>
+    <file>Resources/home_page.png</file>
+    <file>Resources/orange-equal-sign-2-32.png</file>
+    <file>Resources/red-minus-2-32.png</file>
+    <file>Resources/slideshow_full_screen.png</file>
   </qresource>
 </RCC>

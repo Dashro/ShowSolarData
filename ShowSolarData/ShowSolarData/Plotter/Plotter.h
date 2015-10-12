@@ -3,6 +3,9 @@
 #define PLOTTER_H
 
 #include <QObject>
+#include <QtCore>
+
+#include "Customplot/qcustomplot.h"
 
 class CPlotterWindow;
 
@@ -16,10 +19,12 @@ public:
 
 	QWidget *getView();
 
-	void plottDataListGraph(QStringList dataList, QList<double> timeStamps);
+	void plottDataListGraph(QList<double> dataList, QList<double> timeStamps, QString name, QColor color);
 
 private:
 	CPlotterWindow	*m_PlotterWindow;
+
+	QList < QPair < QString, QCPGraph*> > graphList;
 };
 
 #endif // PLOTTER_H

@@ -32,6 +32,11 @@ CPlotterWindow::CPlotterWindow(CPlotter *m_Plotter_, QWidget *parent)
 	ui.m_Plotter->xAxis->grid()->setSubGridVisible(true);
 	ui.m_Plotter->yAxis->grid()->setSubGridVisible(true);
 	//======================================================================================================================================
+	//Legend 
+	ui.m_Plotter->legend->setVisible(true);
+	ui.m_Plotter->legend->setBrush(QBrush(QColor(255, 255, 255, 150)));
+	ui.m_Plotter->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignLeft | Qt::AlignTop); // make legend align in top left corner or axis rect
+	//======================================================================================================================================
 
 }
 

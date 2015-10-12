@@ -5,22 +5,28 @@ CMainWindow::CMainWindow(QWidget *parent)
 {
 	//======================================================================================================================================
 	ui.setupUi(this);
-	m_SolarData = new CSolarData;
-	m_ConsumptionData = new CConsumptionData;
+	m_Data = new CData;
+	m_WebSocketClient = new CWebSocketClient(QUrl(QStringLiteral("ws://localhost:1234")), m_Data);
 	//======================================================================================================================================
 	QLocale german(QLocale::German);
 	//======================================================================================================================================
-	//for (int i = 5; i < headerList.size(); i++)
-	//{
-	//	QAction *tempAction = new QAction(QString("%1").arg(headerList.at(i)), this);
-	//	ui.menuAnsicht_Alle->addAction(tempAction);
-	//	tempAction->setData(i);
-	//	connect(tempAction, SIGNAL(triggered(bool)), this, SLOT(ansichtActionTriggered(bool)));
-	//}
+	//Actions
+	QAction *action_Close = new QAction(QIcon("Resources/cancel.png"), "Close", this);
+	QAction *action_FullScreen = new QAction(QIcon("Resources/slideshow_full_screen.png"), "Fullsreen", this);
+	QAction *action_HomePage = new QAction(QIcon("Resources/home_page.png"), "Home Page", this);
+	QAction *action_Plotter = new QAction(QIcon("Resources/chart_curve.png"), "Plotter", this);
+	QAction *action_FolderChoose = new QAction(QIcon("Resources/folder_explorer.png"), "Folder Choose", this);
+	//QAction *action_HomePage = new QAction(QIcon("Resources/home_page.png"), "Home Page", this);
 	//======================================================================================================================================
-	//FolderChoose
-	m_FolderChoose = new CFolderChoose(this);
-	ui.stackedWidget->addWidget(m_FolderChoose->getView());
+	//Toolbar
+	ui.toolBar->addAction(action_Close);
+	ui.toolBar->addAction(action_FullScreen);
+	ui.toolBar->addSeparator();
+	ui.toolBar->setIconSize(QSize(20, 20));
+	ui.toolBar->addAction(action_HomePage);
+	ui.toolBar->addAction(action_Plotter);
+	ui.toolBar->addAction(action_FolderChoose);
+	
 	//======================================================================================================================================
 	//StartPage
 	m_StartPage = new CStartPage(this);
@@ -30,22 +36,30 @@ CMainWindow::CMainWindow(QWidget *parent)
 	m_Plotter = new CPlotter(this);
 	ui.stackedWidget->addWidget(m_Plotter->getView());
 	//======================================================================================================================================
+	//FolderChoose
+	m_FolderChoose = new CFolderChoose(this);
+	ui.stackedWidget->addWidget(m_FolderChoose->getView());
 	//======================================================================================================================================
-	connect(ui.action_nextPage, SIGNAL(triggered()), this, SLOT(nextPage()));
+	//======================================================================================================================================
+	connect(action_Close,			SIGNAL(triggered()), this, SLOT(close()));
+	connect(action_FullScreen,		SIGNAL(triggered()), this, SLOT(showFullScreen()));
 
-	connect(m_FolderChoose, SIGNAL(NewSolarDataFile(QString)), this, SLOT(newSolarDataFile(QString)));
-	connect(m_FolderChoose, SIGNAL(NewConsumptionDataFile(QString)), this, SLOT(newConsumptionDataFile(QString)));
+	connect(action_HomePage,		SIGNAL(triggered()), this, SLOT(showStartpage()));
+	connect(action_Plotter,			SIGNAL(triggered()), this, SLOT(showPlotter()));
+	connect(action_FolderChoose,	SIGNAL(triggered()), this, SLOT(showFolderChoose()));
+
+
+	connect(m_FolderChoose,			SIGNAL(NewSolarDataFile(QString)), this, SLOT(newSolarDataFile(QString)));
+	connect(m_FolderChoose,			SIGNAL(NewConsumptionDataFile(QString)), this, SLOT(newConsumptionDataFile(QString)));
+
+	connect(m_Data,					SIGNAL(NewDataRecieved()), this, SLOT(newData()));
+
+
 	//======================================================================================================================================
-	m_SolarData->openDatafile(m_FolderChoose->getSolarDataFile());
-	newSolarDataFile(m_FolderChoose->getSolarDataFile());
-	m_ConsumptionData->openDatafile(m_FolderChoose->getConsumptionDataFile());
-	newConsumptionDataFile(m_FolderChoose->getConsumptionDataFile());
 	//======================================================================================================================================
 	resize(480, 320);
 
-	ui.stackedWidget->setCurrentIndex(2);
-
-	m_Plotter->plottDataListGraph(m_SolarData->getCollum(SolarDataHeaderList.indexOf("Pac1")), SolarDataTimeStamps);
+	ui.stackedWidget->setCurrentIndex(0);
 }
 
 CMainWindow::~CMainWindow()
@@ -53,67 +67,71 @@ CMainWindow::~CMainWindow()
 
 }
 
-void CMainWindow::ansichtActionTriggered(bool)
+void CMainWindow::newData()
 {
- //   QAction *emitter = static_cast<QAction*>(sender());
-	//QString test = emitter->text();
-
-	//plotDataList(test);
-}
-void CMainWindow::nextPage()
-{
-
-	if (ui.stackedWidget->currentIndex() < ui.stackedWidget->count() - 1)
+	if (m_Data->timeStamps().size() >= 4)
 	{
-		ui.stackedWidget->setCurrentIndex(ui.stackedWidget->currentIndex() + 1);
-	}
-	else
-	{
-		ui.stackedWidget->setCurrentIndex(0);
-	}
-}
-
-void CMainWindow::newSolarDataFile(QString newFile)
-{
-
-	if (!m_SolarData->openDatafile(newFile))
-	{
-		QMessageBox msgBox;
-		msgBox.setText("Please select the Solar-Data-Folder");
-		msgBox.exec();
-		ui.stackedWidget->setCurrentIndex(ui.stackedWidget->indexOf(m_FolderChoose->getView()));
-	}
-	//======================================================================================================================================
-	else
-	{
-		SolarDataHeaderList = m_SolarData->getheaderList();
-		SolarDataMatrix = m_SolarData->getdataMatrix();
-		SolarDataUnitList = m_SolarData->getunitList();
-		SolarDataTimeStamps = m_SolarData->getTimeStamps();
+		QList<double> test = m_Data->production();
+		if (!test.isEmpty())
+		{
+			m_Plotter->plottDataListGraph(m_Data->production(), m_Data->timeStamps(), "Produktion /W", QColor(Qt::darkGreen));
+			m_Plotter->plottDataListGraph(m_Data->consumption(), m_Data->timeStamps(), "Verbrauch /W", QColor(Qt::darkRed));
+			m_StartPage->showData(m_Data->production(), m_Data->consumption(), m_Data->surplus(), m_Data->timeStamps());
+		}
 	}
 }
 
 
-void CMainWindow::newConsumptionDataFile(QString newFile)
+//void CMainWindow::newSolarDataFile(QString newFile)
+//{
+//
+//	if (!m_SolarData->openDatafile(newFile))
+//	{
+//		QMessageBox msgBox;
+//		msgBox.setText("Please select the Solar-Data-Folder");
+//		msgBox.exec();
+//		ui.stackedWidget->setCurrentIndex(ui.stackedWidget->indexOf(m_FolderChoose->getView()));
+//	}
+//	//======================================================================================================================================
+//	else
+//	{
+//		SolarDataHeaderList = m_SolarData->getheaderList();
+//		SolarDataUnitList = m_SolarData->getunitList();
+//		SolarDataTimeStamps = m_SolarData->getTimeStamps();
+//	}
+//}
+//void CMainWindow::newConsumptionDataFile(QString newFile)
+//{
+//	if (!m_ConsumptionData->openDatafile(newFile))
+//	{
+//		QMessageBox msgBox;
+//		msgBox.setText("Please select the Consumption-Data-Folder");
+//		msgBox.exec();
+//		ui.stackedWidget->setCurrentIndex(ui.stackedWidget->indexOf(m_FolderChoose->getView()));
+//	}
+//	else
+//	{
+//		ConsumptionDataHeaderList	= m_ConsumptionData->getheaderList();
+//		ConsumptionDataUnitList		= m_ConsumptionData->getunitList();
+//		ConsumptionDataTimeStamps	= m_ConsumptionData->getTimeStamps();
+//	}
+//}
+
+void CMainWindow::showStartpage()
 {
-	if (!m_ConsumptionData->openDatafile(newFile))
-	{
-		QMessageBox msgBox;
-		msgBox.setText("Please select the Consumption-Data-Folder");
-		msgBox.exec();
-		ui.stackedWidget->setCurrentIndex(ui.stackedWidget->indexOf(m_FolderChoose->getView()));
-	}
-	else
-	{
-		ConsumptionDataHeaderList	= m_ConsumptionData->getheaderList();
-		ConsumptionDataMatrix		= m_ConsumptionData->getdataMatrix();
-		ConsumptionDataUnitList		= m_ConsumptionData->getunitList();
-		ConsumptionDataTimeStamps	= m_ConsumptionData->getTimeStamps();
-	}
+	ui.stackedWidget->setCurrentIndex(0);
+}
+void CMainWindow::showPlotter()
+{
+	ui.stackedWidget->setCurrentIndex(1);
+}
+void CMainWindow::showFolderChoose()
+{
+	ui.stackedWidget->setCurrentIndex(2);
 }
 
 
-int CMainWindow::getRandomNo(int low, int high)
-{
-	return qrand() % ((high + 1) - low) + low;
-}
+//int CMainWindow::getRandomNo(int low, int high)
+//{
+//	return qrand() % ((high + 1) - low) + low;
+//}
