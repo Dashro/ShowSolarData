@@ -4,15 +4,35 @@
 
 # This is a reminder that you are using a generated .pro file.
 # Remove it when you are finished editing this file.
-message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ./Mainwindow.h \
     ./Customplot/qcustomplot.h \
-    ./SolarData/SolarData.h
+    ./SolarData/SolarData.h \
+    ./Plotter/Plotter.h \
+    ./Plotter/PlotterWindow.h \
+    ./StartPage/StartPage.h \
+    ./StartPage/StartPageWindow.h \
+    ./FolderChoose/FolderChoose.h \
+    ./FolderChoose/FolderChooseWindow.h \
+    ./ConsumptionData/ConsumptionData.h \
+    ./Data/Data.h \
+    ./WebSocketClient/WebSocketClient.h
 SOURCES += ./main.cpp \
     ./Mainwindow.cpp \
     ./Customplot/qcustomplot.cpp \
-    ./SolarData/SolarData.cpp
-FORMS += ./Mainwindow.ui
-RESOURCES += main.qrc
+    ./SolarData/SolarData.cpp \
+    ./Plotter/Plotter.cpp \
+    ./Plotter/PlotterWindow.cpp \
+    ./StartPage/StartPage.cpp \
+    ./StartPage/CStartPageWindow.cpp \
+    ./FolderChoose/FolderChoose.cpp \
+    ./FolderChoose/FolderChooseWindow.cpp \
+    ./ConsumptionData/ConsumptionData.cpp \
+    ./Data/Data.cpp \
+    ./WebSocketClient/WebSocketClient.cpp
+FORMS += ./Mainwindow.ui \
+    ./Plotter/PlotterWindow.ui \
+    ./StartPage/StartPageWindow.ui \
+    ./FolderChoose/FolderChooseWindow.ui
+RESOURCES += ShowSolarData.qrc
