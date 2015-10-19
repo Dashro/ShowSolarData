@@ -203,3 +203,10 @@ ShowSolarData/ShowSolarData/GeneratedFiles/ui_PlotterWindow.h
 ShowSolarData/ShowSolarData/GeneratedFiles/ui_StartPageWindow.h
 ShowSolarData/ShowSolarData/SolarData/hgfStartPage.cpp
 *.Debug
+ShowSolarData/build-ShowSolarData-Desktop_Qt_5_5_0_MSVC2013_32bit-Debug/GeneratedFiles/ui_FolderChooseWindow.h
+ShowSolarData/build-ShowSolarData-Desktop_Qt_5_5_0_MSVC2013_32bit-Debug/GeneratedFiles/ui_Mainwindow.h
+ShowSolarData/build-ShowSolarData-Desktop_Qt_5_5_0_MSVC2013_32bit-Debug/GeneratedFiles/qrc_ShowSolarData.cpp
+ShowSolarData/build-ShowSolarData-Desktop_Qt_5_5_0_MSVC2013_32bit-Debug/GeneratedFiles/ui_PlotterWindow.h
+ShowSolarData/build-ShowSolarData-Desktop_Qt_5_5_0_MSVC2013_32bit-Debug/GeneratedFiles/ui_StartPageWindow.h
+ShowSolarData/build-ShowSolarData-Desktop_Qt_5_5_0_MSVC2013_32bit-Debug/Makefile
+*.Release

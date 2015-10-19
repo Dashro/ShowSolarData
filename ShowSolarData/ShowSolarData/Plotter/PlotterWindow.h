@@ -5,6 +5,8 @@
 #include <QWidget>
 #include "ui_PlotterWindow.h"
 
+
+
 class CPlotter;
 
 class CPlotterWindow : public QWidget

@@ -6,8 +6,10 @@
 
 
 #include "ui_Mainwindow.h"
+
+#include "EventFilter.h"
+
 #include "Data/Data.h"
-#include "FolderChoose/FolderChoose.h"
 #include "StartPage/StartPage.h"
 #include "Plotter/Plotter.h"
 #include "WebSocketClient/WebSocketClient.h"
@@ -20,26 +22,21 @@ public:
 	CMainWindow(QWidget *parent = 0);
 	~CMainWindow();
 
-	//int getRandomNo(int low, int high);
-
-
-	public slots:
-	//void newSolarDataFile(QString);
-
-
+public slots:
 	void showStartpage();
 	void showPlotter();
-	void showFolderChoose();
+
+	void showNextPage();
 
 	void newData();
 
-
-
 private:
 	Ui::CMainWindowClass ui;
+
+	CEventFilter			*m_EventFilter;
+
 	CData					*m_Data;
 
-	CFolderChoose			*m_FolderChoose;
 	CStartPage				*m_StartPage;
 	CPlotter				*m_Plotter;
 	CWebSocketClient		*m_WebSocketClient;

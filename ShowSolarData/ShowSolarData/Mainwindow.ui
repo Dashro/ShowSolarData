@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>853</width>
-    <height>618</height>
+    <width>908</width>
+    <height>531</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,6 +32,9 @@
      <number>0</number>
     </property>
     <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
      <number>0</number>
     </property>
     <item row="0" column="0">
@@ -715,30 +718,6 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <action name="actionSchlie_en">
-   <property name="icon">
-    <iconset resource="ShowSolarData.qrc">
-     <normaloff>:/Resources/008b00-plus-2-32.png</normaloff>:/Resources/008b00-plus-2-32.png</iconset>
-   </property>
-   <property name="text">
-    <string>Schließen</string>
-   </property>
-  </action>
-  <action name="actionTest">
-   <property name="text">
-    <string>test</string>
-   </property>
-  </action>
-  <action name="action_nextPage">
-   <property name="text">
-    <string>Nächste Seite</string>
-   </property>
-  </action>
-  <action name="action_showPlot">
-   <property name="text">
-    <string>Diagram</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

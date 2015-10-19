@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QTime>
 
+#include <qpushbutton.h>
+
 class CStartPageWindow;
 
 class CStartPage : public QObject

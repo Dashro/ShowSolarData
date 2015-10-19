@@ -2,11 +2,17 @@
 #include "PlotterWindow.h"
 #include "Plotter.h"
 
+#include "EventFilter.h"
+
+
 CPlotterWindow::CPlotterWindow(CPlotter *m_Plotter_, QWidget *parent)
 	: QWidget(parent), m_Plotter(m_Plotter_)
 {
 	ui.setupUi(this);
 	ui.m_Plotter->setBackground(QColor(0, 0, 0, 0));
+
+	this->installEventFilter(CEventFilter::Signleton());
+	ui.m_Plotter->installEventFilter(CEventFilter::Signleton());
 
 	//======================================================================================================================================
 	//Axis
@@ -15,7 +21,7 @@ CPlotterWindow::CPlotterWindow(CPlotter *m_Plotter_, QWidget *parent)
 	//======================================================================================================================================
 	ui.m_Plotter->setLocale(QLocale(QLocale::German));
 	ui.m_Plotter->xAxis->setTickLabelType(QCPAxis::ltDateTime);
-	ui.m_Plotter->xAxis->setDateTimeFormat("HH:mm:ss");
+	ui.m_Plotter->xAxis->setDateTimeFormat("HH:mm");
 	//======================================================================================================================================
 	//Grid
 	ui.m_Plotter->xAxis->grid()->setPen(QPen(QColor(200, 200, 200, 200), 1, Qt::DotLine));

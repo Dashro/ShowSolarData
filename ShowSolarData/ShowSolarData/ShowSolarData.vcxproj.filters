@@ -48,23 +48,20 @@
     <Filter Include="Plotter\View">
       <UniqueIdentifier>{bc94bc82-ae04-4c90-a3dc-5e7ec1e77491}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{63b238db-0ad9-4c45-9cf3-b2ef5e45d920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WebSocketClient">
+      <UniqueIdentifier>{0528be7a-dce0-4f2d-a762-0e4faa99a6b6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="StartPage">
       <UniqueIdentifier>{b1f61ada-f939-47ba-a788-b6ab8487eeda}</UniqueIdentifier>
     </Filter>
     <Filter Include="StartPage\View">
       <UniqueIdentifier>{70524096-d77f-494e-ba63-9e37459b2c9d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FolderChoose">
-      <UniqueIdentifier>{d3209657-ab40-4060-a4d3-faa3825087c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FolderChoose\View">
-      <UniqueIdentifier>{5937f43a-3b2c-457a-b237-601fd0d4e3fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Data">
-      <UniqueIdentifier>{63b238db-0ad9-4c45-9cf3-b2ef5e45d920}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WebSocketClient">
-      <UniqueIdentifier>{0528be7a-dce0-4f2d-a762-0e4faa99a6b6}</UniqueIdentifier>
+    <Filter Include="EventFilter">
+      <UniqueIdentifier>{458c54c7-a730-463e-ab4a-9dcecc370e4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -128,24 +125,6 @@
     <ClCompile Include="StartPage\CStartPageWindow.cpp">
       <Filter>StartPage\View</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FolderChoose.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FolderChoose.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_FolderChooseWindow.cpp">
-      <Filter>Generierte Dateien\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_FolderChooseWindow.cpp">
-      <Filter>Generierte Dateien\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="FolderChoose\FolderChoose.cpp">
-      <Filter>FolderChoose</Filter>
-    </ClCompile>
-    <ClCompile Include="FolderChoose\FolderChooseWindow.cpp">
-      <Filter>FolderChoose\View</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Data.cpp">
       <Filter>Generierte Dateien\Debug</Filter>
     </ClCompile>
@@ -163,6 +142,15 @@
     </ClCompile>
     <ClCompile Include="WebSocketClient\WebSocketClient.cpp">
       <Filter>WebSocketClient</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EventFilter.cpp">
+      <Filter>Generierte Dateien\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EventFilter.cpp">
+      <Filter>Generierte Dateien\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="EventFilter.cpp">
+      <Filter>EventFilter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,15 +181,6 @@
     <CustomBuild Include="StartPage\StartPageWindow.ui">
       <Filter>StartPage\View</Filter>
     </CustomBuild>
-    <CustomBuild Include="FolderChoose\FolderChooseWindow.ui">
-      <Filter>FolderChoose\View</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FolderChoose\FolderChoose.h">
-      <Filter>FolderChoose</Filter>
-    </CustomBuild>
-    <CustomBuild Include="FolderChoose\FolderChooseWindow.h">
-      <Filter>FolderChoose\View</Filter>
-    </CustomBuild>
     <CustomBuild Include="Data\Data.h">
       <Filter>Data</Filter>
     </CustomBuild>
@@ -210,6 +189,9 @@
     </CustomBuild>
     <CustomBuild Include="Customplot\qcustomplot.h">
       <Filter>CustomPlot</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EventFilter.h">
+      <Filter>EventFilter</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -220,9 +202,6 @@
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_StartPageWindow.h">
-      <Filter>Generierte Dateien</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_FolderChooseWindow.h">
       <Filter>Generierte Dateien</Filter>
     </ClInclude>
   </ItemGroup>

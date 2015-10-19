@@ -2,6 +2,7 @@
 #define STARTPAGEWINDOW_H
 
 #include <QWidget>
+#include <QMouseEvent>
 #include "ui_StartPageWindow.h"
 
 class CStartPage;
@@ -17,6 +18,7 @@ public:
 
 
 	Ui::CStartPageWindow ui;
+
 private:
 
 
