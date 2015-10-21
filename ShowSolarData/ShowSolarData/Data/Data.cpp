@@ -11,6 +11,14 @@ CData::~CData()
 
 }
 
+void CData::clear()
+{
+	unitList.clear();
+	headerList.clear();
+
+	timeStampList.clear();
+	dataMatrix.clear();
+}
 
 //int CData::openDatafile(QString fileName_)
 //{
@@ -54,13 +62,11 @@ QList<double> CData::consumption()
 
 	return Consumtion;
 }
-
 QList<double> CData::production()
 {
 
 	return collumRelative(headerList.indexOf("ETotal"), "W");
 }
-
 QList<double> CData::surplus()
 {
 	QList<double> Surplus;
@@ -100,7 +106,6 @@ void CData::setRow(QString line)
 
 	emit NewDataRecieved();
 }
-
 void CData::setRow(QStringList line)
 {
 	QLocale german(QLocale::German);
@@ -124,7 +129,6 @@ void CData::setRow(QStringList line)
 	emit NewDataRecieved();
 }
 
-
 QList<double> CData::collum(int index, QString asUnit)
 {
 	QList<double>  buffer;
@@ -139,7 +143,6 @@ QList<double> CData::collum(int index, QString asUnit)
 	}
 	return buffer;
 }
-
 QList<double> CData::collumRelative(int index, QString asUnit)
 {
 	QLocale german(QLocale::German);

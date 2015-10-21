@@ -12,10 +12,12 @@ public:
 	CWebSocketClient(QUrl url, CData  *m_Data, QObject *parent = 0);
 	~CWebSocketClient();
 
+	void connectToServer(QUrl url);
 
 
 signals:
-	void closed();
+	void serverDisconnected();
+	void serverConnected(QString);
 
 private slots:
 	void onConnected();

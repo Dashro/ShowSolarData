@@ -1,9 +1,11 @@
 <RCC>
   <qresource prefix="/">
-    <file>Resources/0006c9_a1b5dc3e5208946fc3a01d851f85d769.jpg</file>
     <file>Resources/008b00-plus-2-32.png</file>
     <file>Resources/cancel.png</file>
     <file>Resources/chart_curve.png</file>
+    <file>Resources/connect.png</file>
+    <file>Resources/cross.png</file>
+    <file>Resources/file_save_as.png</file>
     <file>Resources/folder_explorer.png</file>
     <file>Resources/home_page.png</file>
     <file>Resources/orange-equal-sign-2-32.png</file>

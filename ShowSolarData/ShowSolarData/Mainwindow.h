@@ -13,6 +13,7 @@
 #include "StartPage/StartPage.h"
 #include "Plotter/Plotter.h"
 #include "WebSocketClient/WebSocketClient.h"
+#include "Settings/Settings.h"
 
 class CMainWindow : public QMainWindow
 {
@@ -23,18 +24,26 @@ public:
 	~CMainWindow();
 
 public slots:
+
+//Internal Slots
 	void showStartpage();
 	void showPlotter();
+	void showSettings();
 
 	void showNextPage();
 
-	void newData();
+
+//Data
+	void onNewData();
+
+//Settings
+	void onNewURL(QString url);
 
 private:
 	Ui::CMainWindowClass ui;
 
 	CEventFilter			*m_EventFilter;
-
+	CSettings				*m_Settings;
 	CData					*m_Data;
 
 	CStartPage				*m_StartPage;

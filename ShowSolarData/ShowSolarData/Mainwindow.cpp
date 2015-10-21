@@ -6,25 +6,25 @@ CMainWindow::CMainWindow(QWidget *parent)
 {
 	//======================================================================================================================================
 	ui.setupUi(this);
+	QSettings settings;
 	m_EventFilter = CEventFilter::Signleton();
 	m_Data = new CData;
-	m_WebSocketClient = new CWebSocketClient(QUrl(QStringLiteral("ws://localhost:1234")), m_Data);
+	m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1:%2").arg(settings.value("IPAdress").toString()).arg(settings.value("Port").toString())), m_Data);
 	//======================================================================================================================================
-	QLocale german(QLocale::German);
 	//======================================================================================================================================
-	//Actions	
-    QAction *action_Close = new QAction(QIcon(QString::fromUtf8(":/Resources/cancel.png")), "Close", this);
-	QAction *action_FullScreen = new QAction(QIcon(QString::fromUtf8(":/Resources/slideshow_full_screen.png")), "Fullsreen", this);
-	QAction *action_HomePage = new QAction(QIcon(QString::fromUtf8(":/Resources/home_page.png")), "Home Page", this);
-	QAction *action_Plotter = new QAction(QIcon(QString::fromUtf8(":/Resources/chart_curve.png")), "Plotter", this);
-	//======================================================================================================================================
-	//Toolbar
-	ui.toolBar->addAction(action_Close);
-	ui.toolBar->addAction(action_FullScreen);
-	ui.toolBar->addSeparator();
-	ui.toolBar->setIconSize(QSize(20, 20));
-	ui.toolBar->addAction(action_HomePage);
-	ui.toolBar->addAction(action_Plotter);
+	////Actions	
+	//QAction *action_Close = new QAction(QIcon(QString::fromUtf8(":/Resources/cancel.png")), "Close", this);
+	//QAction *action_FullScreen = new QAction(QIcon(QString::fromUtf8(":/Resources/slideshow_full_screen.png")), "Fullsreen", this);
+	//QAction *action_HomePage = new QAction(QIcon(QString::fromUtf8(":/Resources/home_page.png")), "Home Page", this);
+	//QAction *action_Plotter = new QAction(QIcon(QString::fromUtf8(":/Resources/chart_curve.png")), "Plotter", this);
+	////======================================================================================================================================
+	////Toolbar
+	//ui.toolBar->addAction(action_Close);
+	//ui.toolBar->addAction(action_FullScreen);
+	//ui.toolBar->addSeparator();
+	//ui.toolBar->setIconSize(QSize(20, 20));
+	//ui.toolBar->addAction(action_HomePage);
+	//ui.toolBar->addAction(action_Plotter);
 	//======================================================================================================================================
 	//StartPage
 	m_StartPage = new CStartPage(this);
@@ -34,17 +34,21 @@ CMainWindow::CMainWindow(QWidget *parent)
 	m_Plotter = new CPlotter(this);
 	ui.stackedWidget->addWidget(m_Plotter->getView());
 	//======================================================================================================================================
-
+	//Settings
+	m_Settings = new CSettings(this);
+	ui.stackedWidget->addWidget(m_Settings);
 	//======================================================================================================================================
 	//======================================================================================================================================
-	connect(action_Close,			SIGNAL(triggered()), this, SLOT(close()));
-	connect(action_FullScreen,		SIGNAL(triggered()), this, SLOT(showFullScreen()));
-	connect(m_EventFilter,			SIGNAL(reciveClick()), this, SLOT(showNextPage()));
+	connect(m_EventFilter,		SIGNAL(reciveClick()),				this,		SLOT(showNextPage()));
+	connect(m_EventFilter,		SIGNAL(reciveDoubleClick()),		this,		SLOT(showSettings()));
+	
+	connect(m_Data,				SIGNAL(NewDataRecieved()),			this,		SLOT(onNewData()));
 
-	connect(action_HomePage,		SIGNAL(triggered()), this, SLOT(showStartpage()));
-	connect(action_Plotter,			SIGNAL(triggered()), this, SLOT(showPlotter()));
+	connect(m_Settings,			SIGNAL(reciveNewURL(QString)),		this,		SLOT(onNewURL(QString)));
+	connect(m_Settings,			SIGNAL(ready()),					this,		SLOT(showStartpage()));
 
-	connect(m_Data,					SIGNAL(NewDataRecieved()), this, SLOT(newData()));
+	connect(m_WebSocketClient,	SIGNAL(serverConnected(QString)),	m_Settings, SLOT(onServerConnected(QString)));
+	connect(m_WebSocketClient,	SIGNAL(serverDisconnected()),		m_Settings, SLOT(onServerDisconnected()));
 	//======================================================================================================================================
 	//======================================================================================================================================
 	resize(480, 320);
@@ -57,7 +61,31 @@ CMainWindow::~CMainWindow()
 
 }
 
-void CMainWindow::newData()
+void CMainWindow::showStartpage()
+{
+	ui.stackedWidget->setCurrentIndex(0);
+}
+void CMainWindow::showPlotter()
+{
+	ui.stackedWidget->setCurrentIndex(1);
+}
+void CMainWindow::showSettings()
+{
+	ui.stackedWidget->setCurrentIndex(2);
+}
+void CMainWindow::showNextPage()
+{
+	if (ui.stackedWidget->currentIndex() == 0)
+	{
+		ui.stackedWidget->setCurrentIndex(1);
+	}
+	else
+	{
+		ui.stackedWidget->setCurrentIndex(0);
+	}
+}
+
+void CMainWindow::onNewData()
 {
 	if (m_Data->timeStamps().size() >= 4)
 	{
@@ -71,26 +99,11 @@ void CMainWindow::newData()
 	}
 }
 
-
-void CMainWindow::showStartpage()
+void CMainWindow::onNewURL(QString ipAdress)
 {
-	ui.stackedWidget->setCurrentIndex(0);
-}
-void CMainWindow::showPlotter()
-{
-	ui.stackedWidget->setCurrentIndex(1);
+	m_WebSocketClient->connectToServer(QUrl(QString("ws://%1").arg(ipAdress)));
 }
 
-void CMainWindow::showNextPage()
-{
-	if (ui.stackedWidget->currentIndex() == 0)
-	{
-		ui.stackedWidget->setCurrentIndex(1);
-	}
-	else
-	{
-		ui.stackedWidget->setCurrentIndex(0);
-	}
-}
+
 
 

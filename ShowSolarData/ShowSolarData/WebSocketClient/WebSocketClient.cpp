@@ -8,12 +8,22 @@ CWebSocketClient::CWebSocketClient(QUrl url, CData  *m_Data, QObject *parent)
 
 	qDebug() << "WebSocket server:" << m_url;
 	connect(&m_webSocket, &QWebSocket::connected, this, &CWebSocketClient::onConnected);
-	connect(&m_webSocket, &QWebSocket::disconnected, this, &CWebSocketClient::closed);
+	connect(&m_webSocket, &QWebSocket::disconnected, this, &CWebSocketClient::serverDisconnected);
+
 	m_webSocket.open(QUrl(m_url));
 }
 
 CWebSocketClient::~CWebSocketClient()
 {
+
+}
+
+void CWebSocketClient::connectToServer(QUrl url)
+{
+	m_url = url;
+	qDebug() << "WebSocket server:" << m_url;
+
+	m_webSocket.open(QUrl(m_url));
 
 }
 
@@ -26,17 +36,18 @@ void CWebSocketClient::onConnected()
 		this, &CWebSocketClient::onTextMessageReceived);
 	connect(&m_webSocket, &QWebSocket::binaryMessageReceived,
 		this, &CWebSocketClient::onBinaryMessageReceived);
+
+	emit serverConnected(m_url.toString());
 }
 
 void CWebSocketClient::onBinaryMessageReceived(QByteArray message)
 {
-	qDebug() << "BinaryMessage received:" << message;
-
 	QJsonObject json = QJsonDocument::fromBinaryData(message).object();
 	qDebug() << "Json Script received:" << json["Name"].toString();
 
 	if (json["Name"].toString() == "Initial-Skript")
 	{
+		m_Data->clear();
 		QStringList buffer;
 		buffer << "TimeStamp" << "Einspeisung" << "Bezug" << "ETotal";
 		m_Data->setHeader(buffer);
@@ -57,43 +68,5 @@ void CWebSocketClient::onBinaryMessageReceived(QByteArray message)
 
 void CWebSocketClient::onTextMessageReceived(QString message)
 {
-	qDebug() << "Message received:" << message;
-
-
-	//if (message.startsWith("SOLAR"))
-	//{
-	//	message.remove("SOLAR");
-	//	if (message.startsWith("UNITS"))
-	//	{
-	//		message.remove("UNITS");
-	//		m_SolarData->prozessLine(message, 3);
-	//	}
-	//	else if (message.startsWith("HEADER"))
-	//	{
-	//		message.remove("HEADER");
-	//		m_SolarData->prozessLine(message, 4);
-	//	}
-	//	else
-	//	{
-	//		m_SolarData->prozessLine(message, 5);
-	//	}
-	//}
-	//if (message.startsWith("CONSUMPTION"))
-	//{
-	//	message.remove("CONSUMPTION");
-	//	if (message.startsWith("UNITS"))
-	//	{
-	//		message.remove("UNITS");
-	//		m_ConsumptionData->prozessLine(message, 3);
-	//	}
-	//	else if (message.startsWith("HEADER"))
-	//	{
-	//		message.remove("HEADER");
-	//		m_ConsumptionData->prozessLine(message, 4);
-	//	}
-	//	else
-	//	{
-	//		m_ConsumptionData->prozessLine(message, 5);
-	//	}
-	//}
+	qDebug() << "Text Message received:" << message;
 }

@@ -31,6 +31,7 @@ public:
 	QList < double > production();
 	QList < double > surplus();
 
+	void clear();
 
 	void setRow(QString line);
 	void setRow(QStringList line);

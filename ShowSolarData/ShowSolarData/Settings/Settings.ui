@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CSettings</class>
+ <widget class="QWidget" name="CSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>618</width>
+    <height>452</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CSettings</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255, 255, 255);</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="5">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Active Module</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="text">
+         <string>Plotter</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ShowSolarData.qrc">
+          <normaloff>:/Resources/chart_curve.png</normaloff>:/Resources/chart_curve.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="text">
+         <string>Start Seite</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ShowSolarData.qrc">
+          <normaloff>:/Resources/home_page.png</normaloff>:/Resources/home_page.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QPushButton" name="pBtn_Save">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
+     </property>
+     <property name="text">
+      <string>Speichern</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../ShowSolarData.qrc">
+       <normaloff>:/Resources/file_save_as.png</normaloff>:/Resources/file_save_as.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QPushButton" name="pBtn_Cancel">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
+     </property>
+     <property name="text">
+      <string>Abbrechen</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../ShowSolarData.qrc">
+       <normaloff>:/Resources/cancel.png</normaloff>:/Resources/cancel.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="5">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>WebSocket</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Port:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>IPAdress:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Status:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QPushButton" name="pBtn_Connect">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
+        </property>
+        <property name="text">
+         <string>Verbinde</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ShowSolarData.qrc">
+          <normaloff>:/Resources/connect.png</normaloff>:/Resources/connect.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_Port">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="placeholderText">
+         <string>80</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_IPAdress">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="placeholderText">
+         <string>192.168.202.59</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" colspan="2">
+       <widget class="QLabel" name="label_Status">
+        <property name="text">
+         <string>Warten auf Verbindung</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="pBtn_Close">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
+     </property>
+     <property name="text">
+      <string>Programm Schlieißen</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../ShowSolarData.qrc">
+       <normaloff>:/Resources/cross.png</normaloff>:/Resources/cross.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="pBtn_ShowFullScreen">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
+     </property>
+     <property name="text">
+      <string>Zeige Vollbild</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../ShowSolarData.qrc">
+       <normaloff>:/Resources/slideshow_full_screen.png</normaloff>:/Resources/slideshow_full_screen.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../ShowSolarData.qrc"/>
+ </resources>
+ <connections/>
+</ui>
