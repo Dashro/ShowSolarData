@@ -1,20 +1,32 @@
 #include "Mainwindow.h"
 
 
-CMainWindow::CMainWindow(QWidget *parent, QString url)
+CMainWindow::CMainWindow(int argc, char *argv[], QWidget *parent)
 	: QMainWindow(parent)
 {
+	//======================================================================================================================================
+	QStringList arguments;
+
+	for (int i = 0; i < argc; i++)
+	{
+		arguments.append(argv[i]);
+
+		arguments[i].remove("-");
+	}
 	//======================================================================================================================================
 	ui.setupUi(this);
 	QSettings settings;
 	m_EventFilter = CEventFilter::Signleton();
 	m_Data = new CData;
-	if (url == 0)
-		m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1:%2").arg(settings.value("IPAdress").toString()).arg(settings.value("Port").toString())), m_Data);
-	else
-		m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1").arg(url)), m_Data);
-
 	//======================================================================================================================================
+	if (arguments.contains("ip"))
+	{
+		m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1").arg((arguments.at(arguments.indexOf("ip") + 1)))), m_Data);		
+		settings.setValue("IPAdress", arguments.at(arguments.indexOf("ip") + 1).split(":").first());
+		settings.setValue("Port", arguments.at(arguments.indexOf("ip") + 1).split(":").last());
+	}
+	else
+		m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1:%2").arg(settings.value("IPAdress").toString()).arg(settings.value("Port").toString())), m_Data);
 	//======================================================================================================================================
 	////Actions	
 	//QAction *action_Close = new QAction(QIcon(QString::fromUtf8(":/Resources/cancel.png")), "Close", this);
