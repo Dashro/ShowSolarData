@@ -20,12 +20,16 @@ int main(int argc, char *argv[])
 	CMainWindow w;
 
 	if (arguments.contains("f"))
-	{
 		w.showFullScreen();
-	}
 	else
-	{
 		w.show();
+
+	if(arguments.contains("ip"))
+	{
+		w.onNewURL(arguments.at(arguments.indexOf("ip") + 1));
+		QSettings settings;
+		settings.setValue("IPAdress", arguments.at(arguments.indexOf("ip") + 1).split(":").first());
+		settings.setValue("Port", arguments.at(arguments.indexOf("ip") + 1).split(":").last());
 	}
 
 	return a.exec();

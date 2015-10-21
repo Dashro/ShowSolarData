@@ -85,14 +85,7 @@ color: rgb(255, 255, 255);</string>
      <property name="title">
       <string>WebSocket</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Port:</string>
-        </property>
-       </widget>
-      </item>
+     <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1,0">
       <item row="1" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
@@ -107,32 +100,12 @@ color: rgb(255, 255, 255);</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="2">
-       <widget class="QPushButton" name="pBtn_Connect">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
-        </property>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Verbinde</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../ShowSolarData.qrc">
-          <normaloff>:/Resources/connect.png</normaloff>:/Resources/connect.png</iconset>
+         <string>Port:</string>
         </property>
        </widget>
-      </item>
-      <item row="4" column="1">
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item row="2" column="1" colspan="2">
        <widget class="QLineEdit" name="lineEdit_Port">
@@ -156,10 +129,24 @@ color: rgb(0, 0, 0);</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" colspan="2">
+      <item row="3" column="1">
        <widget class="QLabel" name="label_Status">
         <property name="text">
          <string>Warten auf Verbindung</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QPushButton" name="pBtn_Connect">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
+        </property>
+        <property name="text">
+         <string>Verbinde</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ShowSolarData.qrc">
+          <normaloff>:/Resources/connect.png</normaloff>:/Resources/connect.png</iconset>
         </property>
        </widget>
       </item>
@@ -172,7 +159,7 @@ color: rgb(0, 0, 0);</string>
       <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
      </property>
      <property name="text">
-      <string>Programm Schlieißen</string>
+      <string>Schlieißen</string>
      </property>
      <property name="icon">
       <iconset resource="../ShowSolarData.qrc">
@@ -199,7 +186,7 @@ color: rgb(0, 0, 0);</string>
       <string notr="true">background-color: rgba(223, 223, 223, 100);</string>
      </property>
      <property name="text">
-      <string>Zeige Vollbild</string>
+      <string>Vollbild</string>
      </property>
      <property name="icon">
       <iconset resource="../ShowSolarData.qrc">
