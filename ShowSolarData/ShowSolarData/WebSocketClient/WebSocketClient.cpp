@@ -20,6 +20,7 @@ CWebSocketClient::~CWebSocketClient()
 
 void CWebSocketClient::connectToServer(QUrl url)
 {
+	m_webSocket.abort();
 	m_url = url;
 	qDebug() << "WebSocket server:" << m_url;
 

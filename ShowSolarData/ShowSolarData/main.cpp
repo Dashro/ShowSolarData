@@ -14,6 +14,9 @@ int main(int argc, char *argv[])
 		arguments[i].remove("-");
 	}
 
+	arguments.append("ip");
+	arguments.append("127.0.0.1:80");
+
 	QCoreApplication::setOrganizationName("Fabian Production");
 	QCoreApplication::setApplicationName("ShowSolarData");
 
@@ -24,13 +27,13 @@ int main(int argc, char *argv[])
 	else
 		w.show();
 
-	if(arguments.contains("ip"))
-	{
-		w.onNewURL(arguments.at(arguments.indexOf("ip") + 1));
-		QSettings settings;
-		settings.setValue("IPAdress", arguments.at(arguments.indexOf("ip") + 1).split(":").first());
-		settings.setValue("Port", arguments.at(arguments.indexOf("ip") + 1).split(":").last());
-	}
+	//if(arguments.contains("ip"))
+	//{
+	//	w.onNewURL(arguments.at(arguments.indexOf("ip") + 1));
+	//	QSettings settings;
+	//	settings.setValue("IPAdress", arguments.at(arguments.indexOf("ip") + 1).split(":").first());
+	//	settings.setValue("Port", arguments.at(arguments.indexOf("ip") + 1).split(":").last());
+	//}
 
 	return a.exec();
 }

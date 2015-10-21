@@ -20,7 +20,7 @@ class CMainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
-	CMainWindow(QWidget *parent = 0);
+	CMainWindow(QWidget *parent = 0, QString url = 0);
 	~CMainWindow();
 
 public slots:

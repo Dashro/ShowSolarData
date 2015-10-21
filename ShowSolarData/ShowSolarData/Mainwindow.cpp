@@ -1,7 +1,7 @@
 #include "Mainwindow.h"
 
 
-CMainWindow::CMainWindow(QWidget *parent)
+CMainWindow::CMainWindow(QWidget *parent, QString url)
 	: QMainWindow(parent)
 {
 	//======================================================================================================================================
@@ -9,7 +9,11 @@ CMainWindow::CMainWindow(QWidget *parent)
 	QSettings settings;
 	m_EventFilter = CEventFilter::Signleton();
 	m_Data = new CData;
-	m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1:%2").arg(settings.value("IPAdress").toString()).arg(settings.value("Port").toString())), m_Data);
+	if (url == 0)
+		m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1:%2").arg(settings.value("IPAdress").toString()).arg(settings.value("Port").toString())), m_Data);
+	else
+		m_WebSocketClient = new CWebSocketClient(QUrl(QString("ws://%1").arg(url)), m_Data);
+
 	//======================================================================================================================================
 	//======================================================================================================================================
 	////Actions	
