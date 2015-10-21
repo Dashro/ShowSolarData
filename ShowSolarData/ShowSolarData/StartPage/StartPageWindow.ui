@@ -38,7 +38,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
       <item row="0" column="1">
        <widget class="QLabel" name="label_ProdActual">
         <property name="text">
-         <string>test</string>
+         <string>...</string>
         </property>
        </widget>
       </item>
@@ -55,7 +55,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
       <item row="0" column="3">
        <widget class="QLabel" name="label_ConsumptionActual">
         <property name="text">
-         <string>Test</string>
+         <string>...</string>
         </property>
        </widget>
       </item>
@@ -75,7 +75,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>Test</string>
+         <string>...</string>
         </property>
        </widget>
       </item>
@@ -101,7 +101,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
       <item>
        <widget class="QLabel" name="label_ProdLast">
         <property name="text">
-         <string>TextLabel</string>
+         <string>...</string>
         </property>
        </widget>
       </item>
@@ -118,7 +118,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
       <item>
        <widget class="QLabel" name="label_ConsumptionLast">
         <property name="text">
-         <string>TextLabel</string>
+         <string>...</string>
         </property>
        </widget>
       </item>
@@ -135,7 +135,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
       <item>
        <widget class="QLabel" name="label_SummLast">
         <property name="text">
-         <string>TextLabel</string>
+         <string>...</string>
         </property>
        </widget>
       </item>

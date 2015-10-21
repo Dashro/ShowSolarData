@@ -65,11 +65,11 @@ void CSettings::clickedConnect()
 
 void CSettings::onServerConnected(QString url)
 {
-	ui.label_Status->setText(QString("Mit WebSocketServer verbunden: %1").arg(url));
+	ui.label_Status->setText("Verbunden");
 }
 
 void CSettings::onServerDisconnected()
 {
-	ui.label_Status->setText("Von WebSocketServer getrennt");
+	ui.label_Status->setText("Getrennt");
 }
 
