@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);	
 
-	QCoreApplication::setOrganizationName("Fabian Production");
+	QCoreApplication::setOrganizationName("Fabian_Production");
 	QCoreApplication::setApplicationName("ShowSolarData");
 
 	CMainWindow w(argc, argv);

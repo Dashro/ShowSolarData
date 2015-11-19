@@ -3,12 +3,30 @@
 CData::CData(QObject *parent)
 	: QObject(parent)
 {
-
+	m_SMLProcess = new QProcess(this);
+	//m_SMLProcess->setProcessChannelMode(QProcess::ForwardedChannels);
 }
 
 CData::~CData()
 {
 
+}
+
+void CData::recievedInitialScript(QJsonObject json)
+{
+	clear();
+	headerList << "TimeStamp" << "Einspeisung" << "Bezug" << "ETotal";
+	unitList << json["TimeStamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << "kWh";
+}
+void CData::recievedDataScript(QJsonObject json)
+{
+	QStringList buffer;
+	buffer << json["TimeStamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << getSMLValue("ETotal");
+	setRow(buffer);
+}
+
+void CData::processSMLOutput()
+{
 }
 
 void CData::clear()
@@ -113,7 +131,7 @@ void CData::setRow(QStringList line)
 	QStringList bufferStr = line;
 	QList<double> bufferDbl;
 	
-	if (headerList.first() != ("TimeStamp"))
+	if (headerList.first() != "TimeStamp")
 	{
 		qDebug() << "This DataLine contains no TimeStamp at first Pos";
 		return;
@@ -127,6 +145,36 @@ void CData::setRow(QStringList line)
 	dataMatrix.append(bufferDbl);
 
 	emit NewDataRecieved();
+}
+
+QString CData::getSMLValue(QString key)
+{
+	QString temp;
+	QStringList lines;
+	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
+
+	if (!m_SMLProcess->waitForStarted(100))
+	{
+		qCritical() << "Cant start SML-script";
+		return NULL;
+	}
+	if (!m_SMLProcess->waitForFinished(1000))
+	{
+		qCritical() << "waiting for SML-Data timeout";
+		return NULL;
+	}
+	lines = QString::fromLatin1(m_SMLProcess->readAllStandardOutput()).split(QRegExp("\n"), QString::SkipEmptyParts);
+	lines = lines.filter(key, Qt::CaseInsensitive);
+
+	if (lines.size() != 1)
+	{
+		qDebug() << "key is not clearly";
+		return NULL;
+	}
+	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
+	lines.first().replace(".", ",");
+
+	return lines.first();
 }
 
 QList<double> CData::collum(int index, QString asUnit)

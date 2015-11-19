@@ -5,6 +5,7 @@ CMainWindow::CMainWindow(int argc, char *argv[], QWidget *parent)
 	: QMainWindow(parent)
 {
 	//======================================================================================================================================
+	qSetMessagePattern("[%{time h:mm:ss} %{if-debug}D%{endif}%{if-info}I%{endif}%{if-warning}W%{endif}%{if-critical}C%{endif}%{if-fatal}F%{endif}] %{file}: - %{message}");
 	QStringList arguments;
 
 	for (int i = 0; i < argc; i++)
@@ -55,16 +56,20 @@ CMainWindow::CMainWindow(int argc, char *argv[], QWidget *parent)
 	ui.stackedWidget->addWidget(m_Settings);
 	//======================================================================================================================================
 	//======================================================================================================================================
-	connect(m_EventFilter,		SIGNAL(reciveClick()),				this,		SLOT(showNextPage()));
-	connect(m_EventFilter,		SIGNAL(reciveDoubleClick()),		this,		SLOT(showSettings()));
+	connect(m_EventFilter,		SIGNAL(reciveClick()),							this,		SLOT(showNextPage()));
+	connect(m_EventFilter,		SIGNAL(reciveDoubleClick()),					this,		SLOT(showSettings()));
 	
-	connect(m_Data,				SIGNAL(NewDataRecieved()),			this,		SLOT(onNewData()));
+	connect(m_Data,				SIGNAL(NewDataRecieved()),						this,		SLOT(onNewData()));
 
-	connect(m_Settings,			SIGNAL(reciveNewURL(QString)),		this,		SLOT(onNewURL(QString)));
-	connect(m_Settings,			SIGNAL(ready()),					this,		SLOT(showStartpage()));
+	connect(m_Settings,			SIGNAL(reciveNewURL(QString)),					this,		SLOT(onNewURL(QString)));
+	connect(m_Settings,			SIGNAL(ready()),								this,		SLOT(showStartpage()));
 
-	connect(m_WebSocketClient,	SIGNAL(serverConnected(QString)),	m_Settings, SLOT(onServerConnected(QString)));
-	connect(m_WebSocketClient,	SIGNAL(serverDisconnected()),		m_Settings, SLOT(onServerDisconnected()));
+	connect(m_WebSocketClient,	SIGNAL(serverConnected(QString)),				m_Settings, SLOT(onServerConnected(QString)));
+	connect(m_WebSocketClient,	SIGNAL(serverDisconnected()),					m_Settings, SLOT(onServerDisconnected()));
+
+	connect(m_WebSocketClient,	SIGNAL(recievedInitialScript(QJsonObject)),		m_Data,		SLOT(recievedInitialScript(QJsonObject)));
+	connect(m_WebSocketClient,	SIGNAL(recievedDataScript(QJsonObject)),		m_Data,		SLOT(recievedDataScript(QJsonObject)));
+
 	//======================================================================================================================================
 	//======================================================================================================================================
 	resize(480, 320);

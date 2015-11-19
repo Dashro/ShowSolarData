@@ -33,22 +33,31 @@ public:
 
 	void clear();
 
+public slots:
+	void recievedInitialScript(QJsonObject);
+	void recievedDataScript(QJsonObject);
+	void processSMLOutput();
+
+signals:
+	void NewDataRecieved();	
+
+
+private:
+
 	void setRow(QString line);
 	void setRow(QStringList line);
 
-signals:
-	void NewDataRecieved();
+	QString getSMLValue(QString key);
 
-private:
-	
 	QList <double> toUnit(QList < double > dataList, QString unitFrom, QString unitTo, double multiplier = 1);
 
+	static double toTime_t(QString TimeStamp);
 
-	double toTime_t(QString TimeStamp);
-
+	//Members
+	QProcess	*m_SMLProcess;
 
 	//Attributes
-	QString fileName;
+	QString		fileName;
 
 
 	QStringList	unitList;
