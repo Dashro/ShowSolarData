@@ -181,6 +181,7 @@ QString CData::getSMLValue(QString key)
 	if (lines.size() != 1)
 	{
 		qWarning() << "key is not clearly :" << key;
+		qWarning() << "results :" << lines.size();
 		return NULL;
 	}
 	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
