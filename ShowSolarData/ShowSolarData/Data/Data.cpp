@@ -155,6 +155,7 @@ void CData::setRow(QStringList line)
 QString CData::getSMLValue(QString key)
 {
 	QStringList lines;
+	QString buffer;
 #ifdef _WIN32
 	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
 #else
@@ -174,14 +175,16 @@ QString CData::getSMLValue(QString key)
 		m_SMLProcess->close();
 		return NULL;
 	}
-	lines = QString::fromLatin1(m_SMLProcess->readAllStandardOutput()).split(QRegExp("\n"), QString::SkipEmptyParts);
+	buffer = QString::fromLatin1(m_SMLProcess->readAllStandardOutput());
+	lines = buffer.split(QRegExp("\n"), QString::SkipEmptyParts);
 	m_SMLProcess->close();
 	lines = lines.filter(key, Qt::CaseInsensitive);
 
 	if (lines.size() != 1)
 	{
-		qWarning() << "key is not clearly :" << key;
-		qWarning() << "results :" << lines.size();
+
+		qWarning() << "key is not clearly :" << key << "(" << "results :" << lines.size() << ")";
+		qDebug() << buffer;
 		return NULL;
 	}
 	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
