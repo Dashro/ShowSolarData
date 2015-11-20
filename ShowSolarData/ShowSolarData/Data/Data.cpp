@@ -163,13 +163,15 @@ QString CData::getSMLValue(QString key)
 		//m_SMLProcess->close();
 		//return NULL;
 	}
-	if (!m_SMLProcess->waitForFinished(1000))
+	if (!m_SMLProcess->waitForFinished(10000))
 	{
 		qCritical() << "waiting for SML-Data timeout";
-		m_SMLProcess->close();
-		return NULL;
+		//m_SMLProcess->close();
+		//return NULL;
 	}
-	lines = QString::fromLatin1(m_SMLProcess->readAllStandardOutput()).split(QRegExp("\n"), QString::SkipEmptyParts);
+	temp = QString::fromLatin1(m_SMLProcess->readAllStandardOutput());
+	qDebug() << temp;
+	lines = temp.split(QRegExp("\n"), QString::SkipEmptyParts);
 	m_SMLProcess->close();
 	lines = lines.filter(key, Qt::CaseInsensitive);
 
