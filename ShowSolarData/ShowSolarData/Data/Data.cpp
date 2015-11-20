@@ -82,7 +82,6 @@ QList<double> CData::consumption()
 }
 QList<double> CData::production()
 {
-
 	return collumRelative(headerList.indexOf("ETotal"), "W");
 }
 QList<double> CData::surplus()
@@ -104,6 +103,9 @@ void CData::setRow(QString line)
 	QLocale german(QLocale::German);
 
 	QStringList bufferStr = line.split(";");
+
+	qDebug() << "recive new Datas : " << bufferStr;
+
 	QList<double> bufferDbl;
 	if (headerList.contains("TimeStamp"))
 	{
@@ -130,6 +132,8 @@ void CData::setRow(QStringList line)
 
 	QStringList bufferStr = line;
 	QList<double> bufferDbl;
+
+
 	
 	if (headerList.first() != "TimeStamp")
 	{
@@ -143,13 +147,13 @@ void CData::setRow(QStringList line)
 		bufferDbl.append(german.toDouble(bufferStr.at(i)));
 	}
 	dataMatrix.append(bufferDbl);
+	qDebug() << "recive new Datas :" << bufferDbl;
 
 	emit NewDataRecieved();
 }
 
 QString CData::getSMLValue(QString key)
 {
-	QString temp;
 	QStringList lines;
 #ifdef _WIN32
 	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
@@ -161,29 +165,28 @@ QString CData::getSMLValue(QString key)
 	if (!m_SMLProcess->waitForStarted())
 	{
 		qCritical() << "Cant start SML-script";
-		//m_SMLProcess->close();
-		//return NULL;
+		m_SMLProcess->close();
+		return NULL;
 	}
 	if (!m_SMLProcess->waitForFinished())
 	{
 		qCritical() << "waiting for SML-Data timeout";
-		//m_SMLProcess->close();
-		//return NULL;
+		m_SMLProcess->close();
+		return NULL;
 	}
-	temp = QString::fromLatin1(m_SMLProcess->readAllStandardOutput());
-	qDebug() << temp;
-	lines = temp.split(QRegExp("\n"), QString::SkipEmptyParts);
+	lines = QString::fromLatin1(m_SMLProcess->readAllStandardOutput()).split(QRegExp("\n"), QString::SkipEmptyParts);
 	m_SMLProcess->close();
 	lines = lines.filter(key, Qt::CaseInsensitive);
 
 	if (lines.size() != 1)
 	{
-		qDebug() << "key is not clearly";
+		qWarning() << "key is not clearly";
 		return NULL;
 	}
 	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
 	lines.first().replace(".", ",");
 
+	qDebug() << key << " : " << lines.first();
 	return lines.first();
 }
 
