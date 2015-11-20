@@ -153,17 +153,17 @@ QString CData::getSMLValue(QString key)
 	QStringList lines;
 	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
 #ifndef _WIN32
-	m_SMLProcess->start("/home/pi/SMA/SMAspot/SMAspot", (QStringList() << "-v" << "-fing"));
+	m_SMLProcess->start("/home/pi/SMA/SMAspot/SMAspot", QStringList() << "-v");
 #endif
 
 
-	if (!m_SMLProcess->waitForStarted(100))
+	if (!m_SMLProcess->waitForStarted())
 	{
 		qCritical() << "Cant start SML-script";
 		//m_SMLProcess->close();
 		//return NULL;
 	}
-	if (!m_SMLProcess->waitForFinished(10000))
+	if (!m_SMLProcess->waitForFinished())
 	{
 		qCritical() << "waiting for SML-Data timeout";
 		//m_SMLProcess->close();
