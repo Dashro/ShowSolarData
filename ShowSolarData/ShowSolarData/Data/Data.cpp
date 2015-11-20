@@ -160,8 +160,8 @@ QString CData::getSMLValue(QString key)
 	if (!m_SMLProcess->waitForStarted(100))
 	{
 		qCritical() << "Cant start SML-script";
-		m_SMLProcess->close();
-		return NULL;
+		//m_SMLProcess->close();
+		//return NULL;
 	}
 	if (!m_SMLProcess->waitForFinished(1000))
 	{
