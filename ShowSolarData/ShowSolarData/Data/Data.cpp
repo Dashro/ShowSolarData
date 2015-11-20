@@ -180,7 +180,7 @@ QString CData::getSMLValue(QString key)
 
 	if (lines.size() != 1)
 	{
-		qWarning() << "key is not clearly";
+		qWarning() << "key is not clearly :" << key;
 		return NULL;
 	}
 	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
