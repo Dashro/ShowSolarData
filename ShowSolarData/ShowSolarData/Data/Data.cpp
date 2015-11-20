@@ -152,6 +152,10 @@ QString CData::getSMLValue(QString key)
 	QString temp;
 	QStringList lines;
 	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
+#ifndef _WIN32
+	m_SMLProcess->start("~/SMA/QuerySMA.sh");
+#endif
+
 
 	if (!m_SMLProcess->waitForStarted(100))
 	{
