@@ -159,7 +159,7 @@ QString CData::getSMLValue(QString key)
 #ifdef _WIN32
 	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
 #else
-	m_SMLProcess->start("/home/pi/SMA/SMAspot/SMAspot", QStringList() << "-v");
+	m_SMLProcess->start("/home/pi/SMA/SMAspot/SMAspot", QStringList() << "-v" << "-finq");
 #endif
 
 

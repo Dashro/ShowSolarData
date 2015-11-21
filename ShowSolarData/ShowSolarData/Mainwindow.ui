@@ -10,8 +10,15 @@
     <height>531</height>
    </rect>
   </property>
+  <property name="cursor">
+   <cursorShape>BlankCursor</cursorShape>
+  </property>
   <property name="windowTitle">
-   <string>CMainWindow</string>
+   <string>ShowSolarData</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ShowSolarData.qrc">
+    <normaloff>:/Resources/home_page.png</normaloff>:/Resources/home_page.png</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -21,6 +28,9 @@
 </string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="cursor">
+    <cursorShape>BlankCursor</cursorShape>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
      <number>0</number>
@@ -678,6 +688,9 @@
          </colorrole>
         </disabled>
        </palette>
+      </property>
+      <property name="cursor">
+       <cursorShape>BlankCursor</cursorShape>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
