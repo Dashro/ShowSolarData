@@ -5,7 +5,7 @@ CMainWindow::CMainWindow(int argc, char *argv[], QWidget *parent)
 	: QMainWindow(parent)
 {
 	//======================================================================================================================================
-	qSetMessagePattern("[%{time h:mm:ss} %{if-debug}D%{endif}%{if-info}I%{endif}%{if-warning}W%{endif}%{if-critical}C%{endif}%{if-fatal}F%{endif}] %{file}: - %{message}");
+	qSetMessagePattern("[%{time h:mm:ss} %{if-debug}D%{endif}%{if-warning}W%{endif}%{if-critical}C%{endif}%{if-fatal}F%{endif}] %{file}: - %{message}");
 	QStringList arguments;
 
 	for (int i = 0; i < argc; i++)

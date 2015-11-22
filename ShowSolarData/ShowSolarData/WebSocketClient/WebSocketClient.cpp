@@ -13,10 +13,11 @@ CWebSocketClient::CWebSocketClient(QUrl url, QObject *parent)
 	connection_Timer = new QTimer(this);
 	connection_Timer->setInterval(5000);
 
-	connect(connection_Timer, SIGNAL(timeout()), this, SLOT(onConnectionTimeout()));
+	connect(connection_Timer,	SIGNAL(timeout()),		this,				SLOT(onConnectionTimeout()));
+	connect(&m_webSocket,		SIGNAL(disconnected()),	this,				SLOT(resetSocket()));
 
-	connect(&m_webSocket, SIGNAL(connected()),		connection_Timer, SLOT(stop()));
-	connect(&m_webSocket, SIGNAL(disconnected()),	connection_Timer, SLOT(start()));
+	connect(&m_webSocket,		SIGNAL(connected()),	connection_Timer,	SLOT(stop()));
+	connect(&m_webSocket,		SIGNAL(disconnected()),	connection_Timer,	SLOT(start()));
 
 	connection_Timer->start();
 }
@@ -56,43 +57,25 @@ void CWebSocketClient::onBinaryMessageReceived(QByteArray message)
 
 	if (json_doc.isNull())
 	{
-		qWarning() << "recieved unvalid json-Script";
+		qWarning() << "recieved unvalid Binary Json-Script";
 		return;
 	}
 
 	QJsonObject json = json_doc.object();
 
-	qDebug() << "Json Script received: " << json["Name"].toString();
+	qDebug() << "Binary Json Script received: " << json["Name"].toString();
 
 	if (json["Name"].toString() == "Initial-Skript")
 		emit recievedInitialScript(json);
 
 	else if (json["Name"].toString() == "Data-Skript")
 		emit recievedDataScript(json);
+
+	else
+		qDebug() << "Unknown Json-Script received";
 	
 	return;
-
-	//if (json["Name"].toString() == "Initial-Skript")
-	//{
-	//	m_Data->clear();
-	//	QStringList buffer;
-	//	buffer << "TimeStamp" << "Einspeisung" << "Bezug" << "ETotal";
-	//	m_Data->setHeader(buffer);
-	//	buffer.clear();
-	//	buffer << json["TimeStamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << json["ETotal"].toString();
-	//	m_Data->setUnits(buffer);
-	//}
-	//else if (json["Name"].toString() == "Data-Skript")
-	//{
-	//	QStringList buffer;
-	//	buffer << json["TimeStamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << json["ETotal"].toString();
-	//	m_Data->setRow(buffer);
-	//}
-
-
 }
-
-
 void CWebSocketClient::onTextMessageReceived(QString message)
 {
 	QJsonParseError error;
@@ -107,6 +90,7 @@ void CWebSocketClient::onTextMessageReceived(QString message)
 	QJsonObject json = json_doc.object();
 
 	qDebug() << "Json Script received:" << json["Name"].toString();
+	qDebug() << message;
 
 	if (json["Name"].toString() == "Initial-Skript")
 		emit recievedInitialScript(json);
@@ -145,4 +129,9 @@ void CWebSocketClient::onConnectionTimeout()
 	qDebug() << "Try to connect to:" << m_url;
 	m_webSocket.open(QUrl(m_url));
 
+}
+void CWebSocketClient::resetSocket()
+{
+	qDebug() << "Server Disconnected";
+	m_webSocket.abort();
 }

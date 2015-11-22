@@ -15,13 +15,13 @@ CData::~CData()
 void CData::recievedInitialScript(QJsonObject json)
 {
 	clear();
-	headerList << "TimeStamp" << "Einspeisung" << "Bezug" << "ETotal";
-	unitList << json["TimeStamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << "kWh";
+	headerList << "Timestamp" << "Einspeisung" << "Bezug" << "ETotal";
+	unitList << json["Timestamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << "kWh";
 }
 void CData::recievedDataScript(QJsonObject json)
 {
 	QStringList buffer;
-	buffer << json["TimeStamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << getSMLValue("ETotal");
+	buffer << json["Timestamp"].toString() << json["Einspeisung"].toString() << json["Bezug"].toString() << getSMLValue("ETotal");
 	setRow(buffer);
 }
 
@@ -100,54 +100,43 @@ QList<double> CData::surplus()
 
 void CData::setRow(QString line)
 {
+	setRow(line.split(";"));
+}
+void CData::setRow(QStringList line)
+{
+	bool ok;
+	QList<double> bufferDbl;
 	QLocale german(QLocale::German);
 
-	QStringList bufferStr = line.split(";");
+	QStringList bufferStr = line;
 
-	qDebug() << "recive new Datas : " << bufferStr;
+	qDebug() << QStringLiteral("recive new Values : ") << bufferStr;
 
-	QList<double> bufferDbl;
-	if (headerList.contains("TimeStamp"))
+
+	if (headerList.contains("Timestamp"))
 	{
-		timeStampList.append(toTime_t(bufferStr.at(headerList.indexOf("TimeStamp"))));
-		bufferStr[headerList.indexOf("TimeStamp")] = QString("%1").arg(timeStampList.last());
+		timeStampList.append(toTime_t(bufferStr.at(headerList.indexOf("Timestamp"))));
+		bufferStr[headerList.indexOf("Timestamp")] = QString("%1").arg(timeStampList.last());
 	}
 	else
 	{
-		qDebug() << "This DataLine contains no TimeStamp, the current Time will used instead";
+		qCritical() << "This DataLine contains no Timestamp, the current Time will used instead";
 		timeStampList.append(QDateTime::currentDateTime().toTime_t());
 		bufferStr.prepend(QString("%1").arg(timeStampList.last()));
 	}
 	for (int i = 0; i < bufferStr.size(); i++)
 	{
-		bufferDbl[i] = german.toDouble(bufferStr.at(i));
+		bufferDbl.append(bufferStr.at(i).toDouble(&ok));
+		if (!ok)
+			bufferDbl.last() = german.toDouble(bufferStr.at(i), &ok);
+
+		if (!ok)
+		{
+			qCritical() << "Cant convert" << bufferStr.at(i) << "to double";
+			bufferDbl[i] = 0.0;
+		}
 	}
 	dataMatrix.append(bufferDbl);
-
-	emit NewDataRecieved();
-}
-void CData::setRow(QStringList line)
-{
-	QLocale german(QLocale::German);
-
-	QStringList bufferStr = line;
-	QList<double> bufferDbl;
-
-
-	
-	if (headerList.first() != "TimeStamp")
-	{
-		qDebug() << "This DataLine contains no TimeStamp at first Pos";
-		return;
-	}
-	timeStampList.append(toTime_t(bufferStr.first()));
-	bufferDbl.append(toTime_t(bufferStr.first()));
-	for (int i = 1; i < bufferStr.size(); i++)
-	{
-		bufferDbl.append(german.toDouble(bufferStr.at(i)));
-	}
-	dataMatrix.append(bufferDbl);
-	qDebug() << "recive new Datas :" << bufferDbl;
 
 	emit NewDataRecieved();
 }
@@ -188,7 +177,6 @@ QString CData::getSMLValue(QString key)
 		return NULL;
 	}
 	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
-	lines.first().replace(".", ",");
 
 	qDebug() << key << " : " << lines.first();
 	return lines.first();

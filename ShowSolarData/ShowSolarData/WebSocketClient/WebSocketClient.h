@@ -22,6 +22,7 @@ signals:
 	void recievedDataScript(QJsonObject);
 
 private slots:
+	void resetSocket();
 	void onConnected();
 	void onConnectionTimeout();
 	void onTextMessageReceived(QString message);
