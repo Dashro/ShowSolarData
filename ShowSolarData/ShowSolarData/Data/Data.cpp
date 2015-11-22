@@ -156,13 +156,13 @@ QString CData::getSMLValue(QString key)
 
 	if (!m_SMLProcess->waitForStarted())
 	{
-		qCritical() << "Cant start SML-script";
+		qCritical() << "Cant start SMLProgramm";
 		m_SMLProcess->close();
 		return NULL;
 	}
 	if (!m_SMLProcess->waitForFinished())
 	{
-		qCritical() << "waiting for SML-Data timeout";
+		qCritical() << "waiting-for-SMLData timeout";
 		m_SMLProcess->close();
 		return NULL;
 	}
@@ -237,7 +237,7 @@ double CData::toTime_t(QString TimeStamp_)
 QList<double> CData::toUnit(QList<double> dataList, QString unitFrom, QString unitTo, double multiplier)
 {
 	QLocale german(QLocale::German);
-
+	double value;
 
 	double multiplierFrom;
 	double multiplierTo;
@@ -266,7 +266,11 @@ QList<double> CData::toUnit(QList<double> dataList, QString unitFrom, QString un
 
 	for (int i = 0; i < dataList.size(); i++)
 	{
-		dataList[i] = (dataList.at(i) * multiplierFrom * multiplier) / multiplierTo;
+		value = (dataList.at(i) * multiplierFrom * multiplier) / multiplierTo;
+		if (value < 20000)
+			dataList[i] = value;
+		else
+			value = NAN;
 	}
 
 	if (unitFrom.contains("Wh") && unitTo.contains("W"))

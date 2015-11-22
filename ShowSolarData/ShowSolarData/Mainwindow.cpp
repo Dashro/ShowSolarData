@@ -114,11 +114,10 @@ void CMainWindow::onNewData()
 		QList<double> test = m_Data->production();
 		if (!test.isEmpty())
 		{
-			qDebug() << "Try to show the following Data";
-			qDebug() << "Production:  " << m_Data->production();
+			qDebug() << "Try to show the following Data:";
+			qDebug() << "Production: " << m_Data->production();
 			qDebug() << "Consumption: " << m_Data->consumption();
-			qDebug() << "Surplus:     " << m_Data->surplus();
-			qDebug() << "Timestamp:   " << m_Data->timeStamps();
+			qDebug() << "Surplus: " << m_Data->surplus();
 
 			m_Plotter->plottDataListGraph(m_Data->production(), m_Data->timeStamps(), "Produktion /W", QColor(Qt::darkGreen));
 			m_Plotter->plottDataListGraph(m_Data->consumption(), m_Data->timeStamps(), "Verbrauch /W", QColor(Qt::darkRed));
