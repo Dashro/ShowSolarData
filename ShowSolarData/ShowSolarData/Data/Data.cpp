@@ -116,7 +116,7 @@ void CData::setRow(QStringList line)
 	if (headerList.contains("Timestamp"))
 	{
 		timeStampList.append(toTime_t(bufferStr.at(headerList.indexOf("Timestamp"))));
-		bufferStr[headerList.indexOf("Timestamp")] = QString("%1").arg(timeStampList.last());
+		bufferDbl.append(timeStampList.last());
 	}
 	else
 	{
@@ -124,7 +124,7 @@ void CData::setRow(QStringList line)
 		timeStampList.append(QDateTime::currentDateTime().toTime_t());
 		bufferStr.prepend(QString("%1").arg(timeStampList.last()));
 	}
-	for (int i = 0; i < bufferStr.size(); i++)
+	for (int i = 1; i < bufferStr.size(); i++)
 	{
 		bufferDbl.append(bufferStr.at(i).toDouble(&ok));
 		if (!ok)
@@ -143,43 +143,48 @@ void CData::setRow(QStringList line)
 
 QString CData::getSMLValue(QString key)
 {
+	static int test = 0;
+	QString test_str;
 	QStringList lines;
 	QString buffer;
-#ifdef _WIN32
-	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
-#else
-	m_SMLProcess->start("/home/pi/SMA/SMAspot/SMAspot", QStringList() << "-v" << "-finq");
-#endif
-
-
-	if (!m_SMLProcess->waitForStarted())
-	{
-		qCritical() << "Cant start SML-script";
-		m_SMLProcess->close();
-		return NULL;
-	}
-	if (!m_SMLProcess->waitForFinished())
-	{
-		qCritical() << "waiting for SML-Data timeout";
-		m_SMLProcess->close();
-		return NULL;
-	}
-	buffer = QString::fromLatin1(m_SMLProcess->readAllStandardOutput());
-	lines = buffer.split(QRegExp("\n"), QString::SkipEmptyParts);
-	m_SMLProcess->close();
-	lines = lines.filter(key, Qt::CaseInsensitive);
-
-	if (lines.size() != 1)
-	{
-
-		qWarning() << "key is not clearly :" << key << "(" << "results :" << lines.size() << ")";
-		qDebug() << buffer;
-		return NULL;
-	}
-	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
-
-	qDebug() << key << " : " << lines.first();
-	return lines.first();
+//#ifdef _WIN32
+//	m_SMLProcess->start("C:/Users/Fabian/Documents/Tests/ConsolePrinter/Win32/Debug/ConsolePrinter.exe");
+//#else
+//	m_SMLProcess->start("/home/pi/SMA/SMAspot/SMAspot", QStringList() << "-v" << "-finq");
+//#endif
+//
+//
+//	if (!m_SMLProcess->waitForStarted())
+//	{
+//		qCritical() << "Cant start SML-script";
+//		m_SMLProcess->close();
+//		return NULL;
+//	}
+//	if (!m_SMLProcess->waitForFinished())
+//	{
+//		qCritical() << "waiting for SML-Data timeout";
+//		m_SMLProcess->close();
+//		return NULL;
+//	}
+//	buffer = QString::fromLatin1(m_SMLProcess->readAllStandardOutput());
+//	lines = buffer.split(QRegExp("\n"), QString::SkipEmptyParts);
+//	m_SMLProcess->close();
+//	lines = lines.filter(key, Qt::CaseInsensitive);
+//
+//	if (lines.size() != 1)
+//	{
+//
+//		qWarning() << "key is not clearly :" << key << "(" << "results :" << lines.size() << ")";
+//		qDebug() << buffer;
+//		return NULL;
+//	}
+//	lines.first().remove(QRegExp("[ \\rA-Za-z:]"));
+//
+//	qDebug() << key << " : " << lines.first();
+	//return lines.first();
+	test_str = QString("%1").arg(2478.134 + (test * 0.01));
+	test++;
+	return test_str;
 }
 
 QList<double> CData::collum(int index, QString asUnit)
@@ -226,7 +231,7 @@ double CData::toTime_t(QString TimeStamp_)
 	//dateTime.addDays(buffer_Date.at(0).toInt());
 
 	dateTime.setDate(QDate(buffer_Date.at(2).toInt(), buffer_Date.at(1).toInt(), buffer_Date.at(0).toInt()));
-	dateTime.setTime(QTime(buffer_Time.at(0).toInt(), buffer_Time.at(1).toInt()));
+	dateTime.setTime(QTime(buffer_Time.at(0).toInt(), buffer_Time.at(1).toInt(), buffer_Time.at(2).toInt()));
 
 	return dateTime.toTime_t();
 }
@@ -244,9 +249,9 @@ QList<double> CData::toUnit(QList<double> dataList, QString unitFrom, QString un
 	else if (unitFrom.startsWith("M"))
 		multiplierFrom = 1000000;
 	else if (unitFrom.startsWith("m"))
-		multiplierFrom = 1 / 1000;
+		multiplierFrom = 1. / 1000;
 	else if (unitFrom.startsWith("u"))
-		multiplierFrom = 1 / 1000000;
+		multiplierFrom = 1. / 1000000;
 	else
 		multiplierFrom = 1;
 
@@ -255,9 +260,9 @@ QList<double> CData::toUnit(QList<double> dataList, QString unitFrom, QString un
 	else if (unitTo.startsWith("M"))
 		multiplierTo = 1000000;
 	else if (unitTo.startsWith("m"))
-		multiplierTo = 1 / 1000;
+		multiplierTo = 1. / 1000;
 	else if (unitTo.startsWith("u"))
-		multiplierTo = 1 / 1000000;
+		multiplierTo = 1. / 1000000;
 	else
 		multiplierTo = 1;
 

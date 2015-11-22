@@ -5,7 +5,6 @@ CMainWindow::CMainWindow(int argc, char *argv[], QWidget *parent)
 	: QMainWindow(parent)
 {
 	//======================================================================================================================================
-	qSetMessagePattern("[%{time h:mm:ss} %{if-debug}D%{endif}%{if-warning}W%{endif}%{if-critical}C%{endif}%{if-fatal}F%{endif}] %{file}: - %{message}");
 	QStringList arguments;
 
 	for (int i = 0; i < argc; i++)
@@ -14,6 +13,8 @@ CMainWindow::CMainWindow(int argc, char *argv[], QWidget *parent)
 
 		arguments[i].remove("-");
 	}
+	//======================================================================================================================================
+	qSetMessagePattern("[%{time h:mm:ss:zzz} %{if-category}%{category}%{endif} %{type}] %{function}: - %{message}");
 	//======================================================================================================================================
 	ui.setupUi(this);
 	QSettings settings;
@@ -113,6 +114,12 @@ void CMainWindow::onNewData()
 		QList<double> test = m_Data->production();
 		if (!test.isEmpty())
 		{
+			qDebug() << "Try to show the following Data";
+			qDebug() << "Production:  " << m_Data->production();
+			qDebug() << "Consumption: " << m_Data->consumption();
+			qDebug() << "Surplus:     " << m_Data->surplus();
+			qDebug() << "Timestamp:   " << m_Data->timeStamps();
+
 			m_Plotter->plottDataListGraph(m_Data->production(), m_Data->timeStamps(), "Produktion /W", QColor(Qt::darkGreen));
 			m_Plotter->plottDataListGraph(m_Data->consumption(), m_Data->timeStamps(), "Verbrauch /W", QColor(Qt::darkRed));
 			m_StartPage->showData(m_Data->production(), m_Data->consumption(), m_Data->surplus(), m_Data->timeStamps());
