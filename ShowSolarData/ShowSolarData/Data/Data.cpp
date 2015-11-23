@@ -267,7 +267,7 @@ QList<double> CData::toUnit(QList<double> dataList, QString unitFrom, QString un
 	for (int i = 0; i < dataList.size(); i++)
 	{
 		value = (dataList.at(i) * multiplierFrom * multiplier) / multiplierTo;
-		if (value < 20000)
+		if (value < 20000 && value > -20000)
 			dataList[i] = value;
 		else
 			value = NAN;
@@ -278,7 +278,11 @@ QList<double> CData::toUnit(QList<double> dataList, QString unitFrom, QString un
 		for (int i = 0; i < dataList.size(); i++)
 		{
 			double s = timeStampList.at(i + 1) - timeStampList.at(i);
-			dataList[i] = dataList.at(i) / (s / 3600);
+			value = dataList.at(i) / (s / 3600);
+			if (value < 20000 && value > -20000 && s > 4.5)
+				dataList[i] = value;
+			else
+				value = NAN;
 		}
 	}
 	return dataList;
